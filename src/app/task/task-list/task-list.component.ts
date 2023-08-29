@@ -1,14 +1,13 @@
 import { Component } from '@angular/core'
 import { TASKS } from '../mock-task-list'
+import { type Task } from '../task'
 
 @Component({
   selector: 'app-task-list',
-  templateUrl: './task-list.component.html',
-  styles: [
-  ]
+  templateUrl: './task-list.component.html'
 })
 export class TaskListComponent {
-  taskList = TASKS
+  taskList: Task[] = TASKS
 
   ngOnInit () {
     console.log('toto')

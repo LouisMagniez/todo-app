@@ -1,1 +1,23 @@
 <p>task-form works!</p>
+<form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="'form-control" id="title"
+        required
+        pattern="^[a-zA-Z0-9àéèç]{1,25}$"
+        [(ngModel)]="task.title" name="title"
+        #title="ngModel">
+    </div>
+    <div class="form-group">
+        <label for="desc">Description</label>
+        <input type="text" class="'form-control" id="desc"
+        required
+        pattern="^[a-zA-Z0-9àéèç]{1,25}$"
+        [(ngModel)]="task.desc" name="desc"
+        #desc="ngModel">
+    </div>
+    <button type="submit" 
+        [disabled]="!taskForm.form.valid">
+        Create
+    </button>
+</form>

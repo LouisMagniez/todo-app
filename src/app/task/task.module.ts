@@ -7,7 +7,8 @@ import { FormsModule } from '@angular/forms'
 import { TaskAddComponent } from './task-add/task-add.component'
 
 const taskRoutes: Routes = [
-  { path: 'tasks', component: TaskListComponent }
+  { path: 'tasks', component: TaskListComponent },
+  { path: 'tasks/add', component: TaskAddComponent }
 ]
 
 @NgModule({

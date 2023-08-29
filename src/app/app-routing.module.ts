@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, type Routes } from '@angular/router'
-import { TaskListComponent } from './task/task-list/task-list.component'
 
 const routes: Routes = [
-  { path: '', component: TaskListComponent }
+  { path: '', redirectTo: 'tasks', pathMatch: 'full' }
+  // { path: '**', component: PageNotFoundComponent }
 ]
 
 @NgModule({
