@@ -4,7 +4,7 @@ export class Task {
   desc: string
 
   constructor (
-    title: string = 'Title...',
+    title: string = '',
     desc: string = ''
   ) {
     this.title = title

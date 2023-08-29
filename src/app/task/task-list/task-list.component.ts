@@ -9,6 +9,7 @@ import { type Task } from '../task'
 export class TaskListComponent {
   taskList: Task[] = TASKS
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   ngOnInit () {
     console.log('toto')
     console.table(this.taskList)

@@ -2,3 +2,21 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.align-center {
+    justify-content: center;
+    
+}
+
+.task-card {
+    justify-content: center;
+    width: fit-content;
+    text-align: center;
+    margin: 10px
+}
+
+.task-add {
+    display: flex;
+    justify-content: center;
+    margin: 10px
+}

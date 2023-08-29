@@ -1,6 +1,19 @@
-<p>task-list works!</p>
-<div *ngFor="let task of taskList">
-    <p>{{task.title}}</p>
-    <p>{{task.desc}}</p>
+
+<div class="task-add">
+    <a routerLink="/tasks/add">
+        <button mat-raised-button color="primary" aria-label="Plus icon for add task">
+            New Card
+        </button>
+    </a>
 </div>
-<a routerLink="/tasks/add">+</a>
+
+<div class="task-card" tabindex="0">
+    <div *ngFor="let task of taskList">
+        <mat-card>
+            <mat-card-header>
+              <mat-card-title><p>{{task.title}}</p></mat-card-title>
+            </mat-card-header>
+            <mat-card-content><p>{{task.desc}}</p></mat-card-content>
+        </mat-card>
+    </div>
+</div> 

@@ -5,6 +5,10 @@ import { RouterModule, type Routes } from '@angular/router'
 import { TaskListComponent } from './task-list/task-list.component'
 import { FormsModule } from '@angular/forms'
 import { TaskAddComponent } from './task-add/task-add.component'
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
+import { MatCardModule } from '@angular/material/card'
+import { MatFormFieldModule } from '@angular/material/form-field'
 
 const taskRoutes: Routes = [
   { path: 'tasks', component: TaskListComponent },
@@ -20,6 +24,10 @@ const taskRoutes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatFormFieldModule,
     RouterModule.forChild(taskRoutes)
   ]
 })

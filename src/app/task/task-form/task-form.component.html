@@ -1,7 +1,6 @@
-<p>task-form works!</p>
 <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
     <div class="form-group">
-        <label for="title">Title</label>
+        <mat-label for="title">Title</mat-label>
         <input type="text" class="'form-control" id="title"
         required
         pattern="^[a-zA-Z0-9àéèç]{1,25}$"
