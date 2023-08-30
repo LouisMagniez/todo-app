@@ -4,19 +4,26 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .align-center {
+    display: flex;
     justify-content: center;
-    
 }
 
 .task-card {
     justify-content: center;
-    width: fit-content;
+    width: 380px;
+    height: auto;
     text-align: center;
-    margin: 10px
+    margin: 30px 50px 0px 40%;
+    row-gap: 20px;
 }
 
 .task-add {
     display: flex;
     justify-content: center;
     margin: 10px
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
 }

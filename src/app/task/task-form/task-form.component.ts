@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/prefer-readonly */
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 import { Component, Input } from '@angular/core'
 import { Task } from '../task'
-import { TASKS } from '../mock-task-list'
 import { Router } from '@angular/router'
+import { TaskService } from '../task.service'
 
 @Component({
   selector: 'app-task-form',
@@ -12,14 +13,14 @@ export class TaskFormComponent {
   @Input() task!: Task
 
   constructor (
-    // eslint-disable-next-line @typescript-eslint/prefer-readonly
-    private router: Router
+    private router: Router,
+    private taskService: TaskService
   ) {}
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   onSubmit () {
     console.log(this.task, 'form submit')
-    TASKS.push(this.task)
+    this.taskService.addTask(this.task)
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.router.navigate(['/tasks'])
   }

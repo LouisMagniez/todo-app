@@ -4,7 +4,9 @@ import { Component } from '@angular/core'
   selector: 'app-root',
   template: `
     <mat-toolbar class="align-center" color="primary">
-      <span >Todo App</span>
+      <a routerLink="/tasks">
+        <span >Todo App</span>
+      </a>
     </mat-toolbar>
     <router-outlet></router-outlet>
   `,

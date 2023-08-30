@@ -4,8 +4,16 @@ import { Task } from '../task'
 @Component({
   selector: 'app-task-add',
   template: `
-    <h2>Add a card</h2>
-    <app-task-form [task]="task"></app-task-form>
+    <mat-card class="task-card">
+      <mat-card-header class="align-center">
+        <mat-card-title>
+          Add a card
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <app-task-form [task]="task"></app-task-form>
+      </mat-card-content>
+    </mat-card>
   `
 })
 export class TaskAddComponent {
