@@ -1,21 +1,24 @@
 <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
-    <div class="form-group">
+    <mat-form-field class="form-group">
         <mat-label for="title">Title</mat-label>
-        <input type="text" class="'form-control" id="title"
+        <input matInput type="text" class="'form-control" id="title"
         required
-        pattern="^[a-zA-Z0-9àéèç]{1,25}$"
+        pattern="^[a-zA-Z0-9àéèç]+[a-zA-Z0-9àéèç\s]{1,25}$"
         [(ngModel)]="task.title" name="title"
         #title="ngModel">
-    </div>
-    <div class="form-group">
-        <label for="desc">Description</label>
-        <input type="text" class="'form-control" id="desc"
-        required
-        pattern="^[a-zA-Z0-9àéèç]{1,25}$"
-        [(ngModel)]="task.desc" name="desc"
-        #desc="ngModel">
-    </div>
-    <button type="submit" 
+    </mat-form-field>
+    <p>
+        <mat-form-field class="form-group">
+            <mat-label for="desc">Description</mat-label>
+            <input matInput type="text" class="'form-control" id="desc"
+            required
+            pattern="^[a-zA-Z0-9àéèç]+[a-zA-Z0-9àéèç\s]{1,100}$"
+            [(ngModel)]="task.desc" name="desc"
+            #desc="ngModel">
+        </mat-form-field>
+    </p>
+    
+    <button mat-flat-button color="primary" type="submit" 
         [disabled]="!taskForm.form.valid">
         Create
     </button>

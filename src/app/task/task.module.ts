@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 import { MatCardModule } from '@angular/material/card'
 import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
 
 const taskRoutes: Routes = [
   { path: 'tasks', component: TaskListComponent },
@@ -28,6 +29,7 @@ const taskRoutes: Routes = [
     MatIconModule,
     MatCardModule,
     MatFormFieldModule,
+    MatInputModule,
     RouterModule.forChild(taskRoutes)
   ]
 })
