@@ -18,10 +18,17 @@ export class TaskFormComponent {
   ) {}
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  ngOnInit () {
+    this.task = new Task()
+    console.log(this.task)
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   onSubmit () {
     console.log(this.task, 'form submit')
     this.taskService.addTask(this.task)
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.router.navigate(['/tasks'])
+    this.task = new Task()
   }
 }

@@ -1,13 +1,10 @@
 export class Task {
   id!: number
-  title: string
-  desc: string
+  content: string
 
   constructor (
-    title: string = '',
-    desc: string = ''
+    content: string = ''
   ) {
-    this.title = title
-    this.desc = desc
+    this.content = content
   }
 }

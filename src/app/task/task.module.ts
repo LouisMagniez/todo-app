@@ -4,24 +4,24 @@ import { TaskFormComponent } from './task-form/task-form.component'
 import { RouterModule, type Routes } from '@angular/router'
 import { TaskListComponent } from './task-list/task-list.component'
 import { FormsModule } from '@angular/forms'
-import { TaskAddComponent } from './task-add/task-add.component'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 import { MatCardModule } from '@angular/material/card'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { TaskService } from './task.service'
+import { MatTableModule } from '@angular/material/table'
+import { MatDividerModule } from '@angular/material/divider'
+import { MatListModule } from '@angular/material/list'
 
 const taskRoutes: Routes = [
-  { path: 'tasks', component: TaskListComponent },
-  { path: 'tasks/add', component: TaskAddComponent }
+  { path: 'tasks', component: TaskListComponent }
 ]
 
 @NgModule({
   declarations: [
     TaskFormComponent,
-    TaskListComponent,
-    TaskAddComponent
+    TaskListComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +31,9 @@ const taskRoutes: Routes = [
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
+    MatDividerModule,
+    MatListModule,
     RouterModule.forChild(taskRoutes)
   ],
   providers: [TaskService]
