@@ -23,14 +23,13 @@ export class TaskListComponent {
     this.taskList = this.taskService.getTaskList()
     console.table(this.taskList)
   }
-
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   isDone (task: Task, isChecked: boolean) {
     if (isChecked) {
       console.table(TASKS)
       task.done = true
       // eslint-disable-next-line prefer-const
-      let taskElement = document.getElementById('task' + task.id)
+      const taskElement = document.getElementById('task' + task.id)
       console.table(task)
       console.log('taskElement :', taskElement)
       taskElement?.classList.add('isDone')
