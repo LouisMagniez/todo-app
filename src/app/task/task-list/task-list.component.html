@@ -8,7 +8,7 @@
                     <mat-list-item *ngFor="let task of taskList; last as last">
                         <p class="task">
                             <mat-checkbox (change)="isDone(task,$event.checked)" > 
-                                <span id="task{{task.id}}" class="tasksList"
+                                <span id="task{{task.id}}" class="tasksList">
                                     {{task.content}}
                                 </span>
                             </mat-checkbox>
