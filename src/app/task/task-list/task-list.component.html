@@ -5,10 +5,10 @@
                 <app-task-form></app-task-form>
             </mat-card-header>
                 <mat-card-content>
-                    <mat-list-item *ngFor="let task of taskList; last as last" >
+                    <mat-list-item *ngFor="let task of taskList; last as last" id="TasksList">
                         <p class="task">
                             <mat-checkbox (change)="isDone(task,$event.checked)" > 
-                                <span class="tasksList" id="task{{TASK.length}}">
+                                <span id="task{{task.id}}" class="tasksList">
                                     {{task.content}}
                                 </span>
                             </mat-checkbox>

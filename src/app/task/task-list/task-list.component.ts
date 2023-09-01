@@ -23,13 +23,22 @@ export class TaskListComponent {
     this.taskList = this.taskService.getTaskList()
     console.table(this.taskList)
   }
+  /*
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  isLoaded (task: Task, isChecked: boolean) {
+    document.addEventListener('DOMContentLoaded', function () {
+      const taskElement = document.getElementById('task' + task.id)
+      return taskElement
+    })
+  } */
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   isDone (task: Task, isChecked: boolean) {
     if (isChecked) {
       console.table(TASKS)
       task.done = true
-      const taskElement = document.getElementById('task' + task.id)
+      // eslint-disable-next-line prefer-const
+      let taskElement = document.getElementById('task' + task.id)
       console.table(task)
       console.log('taskElement :', taskElement)
       taskElement?.classList.add('isDone')
