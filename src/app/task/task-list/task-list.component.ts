@@ -23,14 +23,6 @@ export class TaskListComponent {
     this.taskList = this.taskService.getTaskList()
     console.table(this.taskList)
   }
-  /*
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  isLoaded (task: Task, isChecked: boolean) {
-    document.addEventListener('DOMContentLoaded', function () {
-      const taskElement = document.getElementById('task' + task.id)
-      return taskElement
-    })
-  } */
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   isDone (task: Task, isChecked: boolean) {
@@ -53,12 +45,4 @@ export class TaskListComponent {
       console.log('taskClassList :', taskElement?.classList)
     }
   }
-/*
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  updateStyle (task: Task) {
-    if (task.done) {
-    } else {
-      document.querySelector('.tasksList')?.toggleAttribute('doneStyle')
-    }
-  } */
 }
