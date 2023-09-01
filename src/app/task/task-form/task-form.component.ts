@@ -13,6 +13,8 @@ import { TASKS } from '../mock-task-list'
 export class TaskFormComponent {
   @Input() task!: Task
 
+  TASK = TASKS
+
   constructor (
     private router: Router,
     private taskService: TaskService
@@ -21,8 +23,9 @@ export class TaskFormComponent {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   ngOnInit () {
     this.task = new Task()
-    this.task.id = +TASKS.indexOf(this.task) + 1
+    this.task.id = TASKS.length + 1
     console.log(this.task)
+    console.log('task length :' + TASKS.length)
   }
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -32,6 +35,8 @@ export class TaskFormComponent {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.router.navigate(['/tasks'])
     this.task = new Task()
+    this.task.id = TASKS.length + 1
+    console.log('task length :' + TASKS.length)
     console.table(TASKS)
   }
 }

@@ -34,7 +34,7 @@ a {
     text-align: center;
     text-decoration: none;
 }
-mat-checkbox:checked {
+.isDone {
     font-size: large;
     margin: 10px;
     text-align: center;
