@@ -7,11 +7,11 @@
                 <mat-card-content>
                     <mat-list-item *ngFor="let task of taskList; last as last" >
                         <p class="task">
-                            <mat-checkbox (change)="isDone(task,$event.checked)" > 
+                            <!--<mat-checkbox (change)="isDone(task,$event.checked)" > -->
                                 <span class="tasksList" id="task{{TASK.length}}">
                                     {{task.content}}
                                 </span>
-                            </mat-checkbox>
+                            <!--</mat-checkbox> -->
                         </p>
                         <p>
                             <mat-divider *ngIf="!last"></mat-divider>

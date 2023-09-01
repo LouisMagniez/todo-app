@@ -23,7 +23,7 @@ export class TaskListComponent {
     this.taskList = this.taskService.getTaskList()
     console.table(this.taskList)
   }
-
+/*
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   isDone (task: Task, isChecked: boolean) {
     if (isChecked) {
@@ -44,7 +44,7 @@ export class TaskListComponent {
       console.log('taskClassList :', taskElement?.classList)
     }
   }
-/*
+
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   updateStyle (task: Task) {
     if (task.done) {
