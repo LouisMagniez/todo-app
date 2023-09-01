@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core'
 import { Task } from '../task'
 import { Router } from '@angular/router'
 import { TaskService } from '../task.service'
+import { TASKS } from '../mock-task-list'
 
 @Component({
   selector: 'app-task-form',
@@ -20,6 +21,7 @@ export class TaskFormComponent {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   ngOnInit () {
     this.task = new Task()
+    this.task.id = +TASKS.indexOf(this.task) + 1
     console.log(this.task)
   }
 
@@ -30,5 +32,6 @@ export class TaskFormComponent {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.router.navigate(['/tasks'])
     this.task = new Task()
+    console.table(TASKS)
   }
 }

@@ -30,6 +30,17 @@ a {
 
 .tasksList {
     font-size: large;
-    margin: 30px;
-    text-align: center
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+}
+mat-checkbox:checked {
+    font-size: large;
+    margin: 10px;
+    text-align: center;
+    text-decoration: line-through;
+}
+
+.task {
+    flex-wrap: wrap
 }

@@ -13,6 +13,7 @@ import { TaskService } from './task.service'
 import { MatTableModule } from '@angular/material/table'
 import { MatDividerModule } from '@angular/material/divider'
 import { MatListModule } from '@angular/material/list'
+import { MatCheckboxModule } from '@angular/material/checkbox'
 
 const taskRoutes: Routes = [
   { path: 'tasks', component: TaskListComponent }
@@ -34,6 +35,7 @@ const taskRoutes: Routes = [
     MatTableModule,
     MatDividerModule,
     MatListModule,
+    MatCheckboxModule,
     RouterModule.forChild(taskRoutes)
   ],
   providers: [TaskService]
