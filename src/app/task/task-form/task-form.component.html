@@ -1,13 +1,11 @@
 <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
     <div class="align-center">
-        <mat-form-field class="form-group" >
+        <mat-form-field class="form-group" class="new-task">
             <mat-label for="title">Add a new task</mat-label>
-            <input matInput #input maxlength="25" type="text" class="'form-control" id="content"
-            required
-            pattern="^[a-zA-Z0-9àéèç]+[a-zA-Z0-9àéèç\s]{1,25}$"
+            <input matInput #input maxlength="200" type="text" id="content" 
             [(ngModel)]="task.content" name="content"
             #content="ngModel">
-            <mat-hint align="end">{{input.value.length}}/25</mat-hint>
+            <mat-hint align="end">{{input.value.length}}/200</mat-hint>
         </mat-form-field>
         <button mat-flat-button color="primary" type="submit" class="create-button"
             [disabled]="!taskForm.form.valid">

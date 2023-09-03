@@ -9,14 +9,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .task-card {
-    justify-content: center;
-    width: 380px;
+    width: 500px;
     height: auto;
     text-align: center;
-    margin: 30px 50px 0px 40%;
     row-gap: 20px;
+    margin-top: 30px;
 }
-
 .create-button {
     display: flex;
     justify-content: center;
@@ -31,7 +29,6 @@ a {
 .tasksList {
     font-size: large;
     margin: 10px;
-    text-align: center;
     text-decoration: none;
 }
 .isDone {
@@ -42,5 +39,11 @@ a {
 }
 
 .task {
-    flex-wrap: wrap
+    display: flex;
+    text-align: left;
+    flex-wrap: wrap;
+    word-break: break-all;
+}
+.new-task {
+    width: 314px
 }
