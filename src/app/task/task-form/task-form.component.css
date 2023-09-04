@@ -1,0 +1,14 @@
+.align-center {
+  display: flex;
+  justify-content: center;
+}
+
+.create-button {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0px 10px 18px;
+}
+
+.new-task {
+  width: 314px;
+}

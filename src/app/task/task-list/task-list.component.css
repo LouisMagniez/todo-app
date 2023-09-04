@@ -1,0 +1,31 @@
+.align-center {
+  display: flex;
+  justify-content: center;
+}
+
+.task-card {
+  width: 500px;
+  height: auto;
+  text-align: center;
+  row-gap: 20px;
+  margin-top: 30px;
+}
+
+.task-list {
+  font-size: large;
+  margin: 10px;
+  text-decoration: none;
+}
+.task-done {
+  font-size: large;
+  margin: 10px;
+  text-align: center;
+  text-decoration: line-through;
+}
+
+.task {
+  display: flex;
+  text-align: left;
+  flex-wrap: wrap;
+  word-break: break-all;
+}

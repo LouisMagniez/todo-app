@@ -3,10 +3,7 @@ export class Task {
   content: string
   done: boolean
 
-  constructor (
-    content: string = '',
-    done: boolean = false
-  ) {
+  constructor(content: string = "", done: boolean = false) {
     this.content = content
     this.done = done
   }

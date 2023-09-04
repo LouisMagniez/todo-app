@@ -1,0 +1,9 @@
+.align-center {
+  display: flex;
+  justify-content: center;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}

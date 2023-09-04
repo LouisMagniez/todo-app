@@ -1,15 +1,27 @@
 <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
-    <div class="align-center">
-        <mat-form-field class="form-group" class="new-task">
-            <mat-label for="title">Add a new task</mat-label>
-            <input matInput #input maxlength="200" type="text" id="content" 
-            [(ngModel)]="task.content" name="content"
-            #content="ngModel">
-            <mat-hint align="end">{{input.value.length}}/200</mat-hint>
-        </mat-form-field>
-        <button mat-flat-button color="primary" type="submit" class="create-button"
-            [disabled]="!taskForm.form.valid">
-            Create
-        </button>
-    </div>
+  <div class="align-center">
+    <mat-form-field class="form-group" class="new-task">
+      <mat-label for="title">Add a new task</mat-label>
+      <input
+        matInput
+        #input
+        maxlength="200"
+        type="text"
+        id="content"
+        [(ngModel)]="task.content"
+        name="content"
+        #content="ngModel"
+      />
+      <mat-hint align="end">{{ input.value.length }}/200</mat-hint>
+    </mat-form-field>
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      class="create-button"
+      [disabled]="!input.value"
+    >
+      Create
+    </button>
+  </div>
 </form>
