@@ -1,12 +1,16 @@
+<div class="search-task">
+  <app-task-search></app-task-search>
+  <div class="filter-toggle">
+    <mat-slide-toggle checked color="accent" [(ngModel)]="isChecked"
+      >See all</mat-slide-toggle
+    >
+  </div>
+</div>
 <div class="align-center">
-  <mat-slide-toggle checked color="accent" [(ngModel)]="isChecked"
-    >See all</mat-slide-toggle
-  >
   <mat-card class="task-card">
-    <mat-card-header class="align-center">
-      <app-task-form></app-task-form>
-    </mat-card-header>
+    <mat-card-header class="align-center"> </mat-card-header>
     <mat-card-content>
+      <app-task-form></app-task-form>
       <div [hidden]="!isChecked">
         <mat-list-item *ngFor="let task of taskList; last as last">
           <div class="task">
