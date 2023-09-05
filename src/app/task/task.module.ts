@@ -14,11 +14,13 @@ import { MatTableModule } from "@angular/material/table"
 import { MatDividerModule } from "@angular/material/divider"
 import { MatListModule } from "@angular/material/list"
 import { MatCheckboxModule } from "@angular/material/checkbox"
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { TaskFilterPipe } from './task-filter.pipe'
 
 const taskRoutes: Routes = [{ path: "tasks", component: TaskListComponent }]
 
 @NgModule({
-  declarations: [TaskFormComponent, TaskListComponent],
+  declarations: [TaskFormComponent, TaskListComponent, TaskFilterPipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,6 +33,7 @@ const taskRoutes: Routes = [{ path: "tasks", component: TaskListComponent }]
     MatDividerModule,
     MatListModule,
     MatCheckboxModule,
+    MatSlideToggleModule,
     RouterModule.forChild(taskRoutes),
   ],
   providers: [TaskService],

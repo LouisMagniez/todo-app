@@ -12,6 +12,8 @@ export class TaskListComponent {
 
   taskList!: Task[]
 
+  isChecked: boolean = true
+
   ngOnInit() {
     this.taskList = this.taskService.getTaskList()
   }
