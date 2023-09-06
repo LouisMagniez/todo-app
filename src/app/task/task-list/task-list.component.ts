@@ -15,6 +15,8 @@ export class TaskListComponent {
 
   isChecked: boolean = true
 
+  option: string = "SEE_ALL"
+
   ngOnInit() {
     this.taskList = this.taskService.getTaskList()
   }

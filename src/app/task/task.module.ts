@@ -15,7 +15,7 @@ import { MatDividerModule } from "@angular/material/divider"
 import { MatListModule } from "@angular/material/list"
 import { MatCheckboxModule } from "@angular/material/checkbox"
 import { MatSlideToggleModule } from "@angular/material/slide-toggle"
-import { TaskFilterPipe } from "./task-filter.pipe"
+import { TaskStatusFilterPipe } from "./task-status-filter.pipe"
 import { TaskSearchComponent } from "./task-search/task-search.component"
 import { BrowserModule } from "@angular/platform-browser"
 import { ReactiveFormsModule } from "@angular/forms"
@@ -32,7 +32,7 @@ const taskRoutes: Routes = [{ path: "tasks", component: TaskListComponent }]
   declarations: [
     TaskFormComponent,
     TaskListComponent,
-    TaskFilterPipe,
+    TaskStatusFilterPipe,
     TaskSearchComponent,
   ],
   imports: [
