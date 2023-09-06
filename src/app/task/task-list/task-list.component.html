@@ -14,8 +14,12 @@
       <div [hidden]="!isChecked">
         <mat-list-item *ngFor="let task of taskList; last as last">
           <div class="task">
-            <mat-checkbox (change)="isDone(task, $event.checked)">
-              <span id="task{{ task.id }}" class="task-list">
+            <mat-checkbox [(ngModel)]="task.done">
+              <span
+                id="task{{ task.id }}"
+                class="task-list"
+                [ngClass]="{ 'task-done': task.done }"
+              >
                 {{ task.content }}
               </span>
             </mat-checkbox>
