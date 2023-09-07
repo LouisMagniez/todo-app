@@ -11,19 +11,20 @@ import { TaskService } from "../task.service"
 export class TaskListComponent {
   constructor(private taskService: TaskService) {}
 
+  option: string = "SEE_ALL"
+
   taskList!: Task[]
 
   isChecked: boolean = true
-
-  option: string = "SEE_ALL"
 
   ngOnInit() {
     this.taskList = this.taskService.getTaskList()
   }
 
-  isDone(task: Task, isChecked: boolean) {
-    task.done = isChecked
-    const taskElement = document.getElementById("task" + task.id)
-    taskElement?.classList.toggle("task-done")
+  chipManage() {
+    console.log("this.option 1 :", this.option)
+    this.option = "toto"
+    console.log("this.option 2 :", this.option)
+    return this.option
   }
 }
