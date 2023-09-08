@@ -25,7 +25,7 @@ export class TaskListComponent {
     if (option === undefined) {
       setTimeout(() => {
         this.option = "SEE_ALL"
-      }, 1)
+      }, 0)
     }
   }
 }
