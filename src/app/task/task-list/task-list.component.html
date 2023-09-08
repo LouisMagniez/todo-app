@@ -2,7 +2,12 @@
   <app-task-search></app-task-search>
 </div>
 <div class="chips">
-  <mat-chip-listbox aria-label="chip-filter" [(ngModel)]="option">
+  <mat-chip-listbox
+    aria-label="chip-filter"
+    [(ngModel)]="option"
+    (ngModelChange)="chipManage(option)"
+  >
+    <mat-chip-option value="SEE_ALL" color="accent">See all</mat-chip-option>
     <mat-chip-option value="TO_DO" color="accent">To do</mat-chip-option>
     <mat-chip-option value="DONE" color="accent">Done</mat-chip-option>
   </mat-chip-listbox>

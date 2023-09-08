@@ -21,10 +21,11 @@ export class TaskListComponent {
     this.taskList = this.taskService.getTaskList()
   }
 
-  chipManage() {
-    console.log("this.option 1 :", this.option)
-    this.option = "toto"
-    console.log("this.option 2 :", this.option)
-    return this.option
+  chipManage(option: string) {
+    if (option === undefined) {
+      setTimeout(() => {
+        this.option = "SEE_ALL"
+      }, 1)
+    }
   }
 }
