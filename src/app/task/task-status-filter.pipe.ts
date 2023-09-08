@@ -9,7 +9,6 @@ export class TaskStatusFilterPipe implements PipeTransform {
   transform(tasks: Task[], option: string) {
     switch (option) {
       case "SEE_ALL":
-        console.log("In see all case")
         return tasks
 
       case "TO_DO":
@@ -19,8 +18,6 @@ export class TaskStatusFilterPipe implements PipeTransform {
         return tasks.filter((task) => task.done)
 
       default:
-        console.log("In default case")
-        console.log(option)
         return tasks
     }
   }
