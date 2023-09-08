@@ -1,10 +1,5 @@
 <div class="search-task">
   <app-task-search></app-task-search>
-  <div class="filter-toggle">
-    <mat-slide-toggle checked color="accent" [(ngModel)]="isChecked"
-      >See all</mat-slide-toggle
-    >
-  </div>
 </div>
 <div class="align-center">
   <mat-card class="task-card">
@@ -14,21 +9,7 @@
       <div [hidden]="!isChecked">
         <mat-list-item *ngFor="let task of taskList; last as last">
           <div class="task">
-            <mat-checkbox (change)="isDone(task, $event.checked)">
-              <span id="task{{ task.id }}" class="task-list">
-                {{ task.content }}
-              </span>
-            </mat-checkbox>
-          </div>
-          <p>
-            <mat-divider *ngIf="!last"></mat-divider>
-          </p>
-        </mat-list-item>
-      </div>
-      <div [hidden]="isChecked">
-        <mat-list-item *ngFor="let task of taskList | taskFilter; last as last">
-          <div class="task">
-            <mat-checkbox (change)="isDone(task, $event.checked)">
+            <mat-checkbox>
               <span id="task{{ task.id }}" class="task-list">
                 {{ task.content }}
               </span>

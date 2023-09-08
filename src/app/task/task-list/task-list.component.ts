@@ -17,10 +17,4 @@ export class TaskListComponent {
   ngOnInit() {
     this.taskList = this.taskService.getTaskList()
   }
-
-  isDone(task: Task, isChecked: boolean) {
-    task.done = isChecked
-    const taskElement = document.getElementById("task" + task.id)
-    taskElement?.classList.toggle("task-done")
-  }
 }
