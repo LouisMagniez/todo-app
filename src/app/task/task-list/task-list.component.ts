@@ -10,6 +10,8 @@ import { TaskService } from "../task.service"
 export class TaskListComponent {
   constructor(private taskService: TaskService) {}
 
+  option: string = "SEE_ALL"
+
   taskList!: Task[]
 
   isChecked: boolean = true
@@ -18,9 +20,11 @@ export class TaskListComponent {
     this.taskList = this.taskService.getTaskList()
   }
 
-  isDone(task: Task, isChecked: boolean) {
-    task.done = isChecked
-    const taskElement = document.getElementById("task" + task.id)
-    taskElement?.classList.toggle("task-done")
+  chipManage() {
+    if (this.option === undefined) {
+      setTimeout(() => {
+        this.option = "SEE_ALL"
+      }, 0)
+    }
   }
 }

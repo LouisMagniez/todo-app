@@ -10,7 +10,15 @@ export class TaskService {
     return TASKS
   }
 
-  addTask(task: Task): any {
+  getTaskListLength(): number {
+    return TASKS.length
+  }
+
+  generateNewTaskId(): number {
+    return TASKS.length + 1
+  }
+
+  addTask(task: Task) {
     return TASKS.unshift(task)
   }
 }

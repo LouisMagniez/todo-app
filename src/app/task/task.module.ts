@@ -15,21 +15,20 @@ import { MatDividerModule } from "@angular/material/divider"
 import { MatListModule } from "@angular/material/list"
 import { MatCheckboxModule } from "@angular/material/checkbox"
 import { MatSlideToggleModule } from "@angular/material/slide-toggle"
-import { TaskFilterPipe } from "./task-filter.pipe"
-import { TaskSearchComponent } from "./task-search/task-search.component"
-import { MatAutocompleteModule } from "@angular/material/autocomplete"
+import { TaskStatusFilterPipe } from "./task-status-filter.pipe"
 import { BrowserModule } from "@angular/platform-browser"
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
+import { ReactiveFormsModule } from "@angular/forms"
+import { MatRadioModule } from "@angular/material/radio"
+import { MatChipsModule } from "@angular/material/chips"
+import {
+  BrowserAnimationsModule,
+  provideAnimations,
+} from "@angular/platform-browser/animations"
 
 const taskRoutes: Routes = [{ path: "tasks", component: TaskListComponent }]
 
 @NgModule({
-  declarations: [
-    TaskFormComponent,
-    TaskListComponent,
-    TaskFilterPipe,
-    TaskSearchComponent,
-  ],
+  declarations: [TaskFormComponent, TaskListComponent, TaskStatusFilterPipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -43,11 +42,13 @@ const taskRoutes: Routes = [{ path: "tasks", component: TaskListComponent }]
     MatListModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatAutocompleteModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatRadioModule,
+    MatChipsModule,
     RouterModule.forChild(taskRoutes),
   ],
-  providers: [TaskService],
+  providers: [TaskService, provideAnimations()],
 })
 export class TaskModule {}
