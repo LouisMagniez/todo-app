@@ -17,4 +17,12 @@ export class TaskListComponent {
   ngOnInit() {
     this.taskList = this.taskService.getTaskList()
   }
+
+  filteredList(filter: string): Task[] {
+    if (filter) {
+      return this.taskService.searchFilter(filter)
+    } else {
+      return this.taskService.getTaskList()
+    }
+  }
 }

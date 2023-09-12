@@ -16,7 +16,6 @@ import { MatListModule } from "@angular/material/list"
 import { MatCheckboxModule } from "@angular/material/checkbox"
 import { MatSlideToggleModule } from "@angular/material/slide-toggle"
 import { TaskFilterPipe } from "./task-filter.pipe"
-import { TaskSearchComponent } from "./task-search/task-search.component"
 import { MatAutocompleteModule } from "@angular/material/autocomplete"
 import { BrowserModule } from "@angular/platform-browser"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
@@ -24,12 +23,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 const taskRoutes: Routes = [{ path: "tasks", component: TaskListComponent }]
 
 @NgModule({
-  declarations: [
-    TaskFormComponent,
-    TaskListComponent,
-    TaskFilterPipe,
-    TaskSearchComponent,
-  ],
+  declarations: [TaskFormComponent, TaskListComponent, TaskFilterPipe],
   imports: [
     CommonModule,
     FormsModule,
