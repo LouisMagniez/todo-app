@@ -17,7 +17,7 @@
       <app-task-form></app-task-form>
 
       <mat-list-item
-        *ngFor="let task of taskList | taskStatusFilter: option; last as last"
+        *ngFor="let task of filteredTaskList(option); last as last"
       >
         <div class="task">
           <mat-checkbox [(ngModel)]="task.done">

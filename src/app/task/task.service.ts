@@ -21,4 +21,20 @@ export class TaskService {
   addTask(task: Task) {
     return TASKS.unshift(task)
   }
+
+  statusFilter(option: string) {
+    switch (option) {
+      case "SEE_ALL":
+        return TASKS
+
+      case "TO_DO":
+        return TASKS.filter((task) => !task.done)
+
+      case "DONE":
+        return TASKS.filter((task) => task.done)
+
+      default:
+        return TASKS
+    }
+  }
 }
