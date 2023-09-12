@@ -16,7 +16,6 @@ import { MatListModule } from "@angular/material/list"
 import { MatCheckboxModule } from "@angular/material/checkbox"
 import { MatSlideToggleModule } from "@angular/material/slide-toggle"
 import { TaskStatusFilterPipe } from "./task-status-filter.pipe"
-import { TaskSearchComponent } from "./task-search/task-search.component"
 import { BrowserModule } from "@angular/platform-browser"
 import { ReactiveFormsModule } from "@angular/forms"
 import { MatRadioModule } from "@angular/material/radio"
@@ -29,12 +28,7 @@ import {
 const taskRoutes: Routes = [{ path: "tasks", component: TaskListComponent }]
 
 @NgModule({
-  declarations: [
-    TaskFormComponent,
-    TaskListComponent,
-    TaskStatusFilterPipe,
-    TaskSearchComponent,
-  ],
+  declarations: [TaskFormComponent, TaskListComponent, TaskStatusFilterPipe],
   imports: [
     CommonModule,
     FormsModule,

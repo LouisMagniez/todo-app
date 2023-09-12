@@ -18,12 +18,12 @@ export class TaskFormComponent {
 
   ngOnInit() {
     this.task = new Task()
-    this.task.id = this.taskService.getTaskListLength()
+    this.task.id = this.taskService.generateNewTaskId()
   }
 
   onSubmit() {
     this.taskService.addTask(this.task)
     this.task = new Task()
-    this.task.id = this.taskService.getTaskListLength()
+    this.task.id = this.taskService.generateNewTaskId()
   }
 }

@@ -6,7 +6,6 @@ import { TaskService } from "../task.service"
   selector: "app-task-list",
   templateUrl: "./task-list.component.html",
   styleUrls: ["task-list.component.css"],
-  animations: [],
 })
 export class TaskListComponent {
   constructor(private taskService: TaskService) {}
@@ -21,8 +20,8 @@ export class TaskListComponent {
     this.taskList = this.taskService.getTaskList()
   }
 
-  chipManage(option: string) {
-    if (option === undefined) {
+  chipManage() {
+    if (this.option === undefined) {
       setTimeout(() => {
         this.option = "SEE_ALL"
       }, 0)

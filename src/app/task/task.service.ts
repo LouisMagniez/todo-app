@@ -11,6 +11,10 @@ export class TaskService {
   }
 
   getTaskListLength(): number {
+    return TASKS.length
+  }
+
+  generateNewTaskId(): number {
     return TASKS.length + 1
   }
 
