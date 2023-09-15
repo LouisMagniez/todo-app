@@ -17,6 +17,7 @@ export class TaskListComponent {
   isChecked: boolean = true
 
   ngOnInit() {
+    this.taskService.localInitTASKS()
     this.taskList = this.taskService.getTaskList()
   }
 
