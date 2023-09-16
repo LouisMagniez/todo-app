@@ -25,6 +25,6 @@ export class TaskFormComponent {
     this.taskService.addTask(this.task)
     this.task = new Task()
     this.task.id = this.taskService.generateNewTaskId()
-    this.taskService.localAddTask()
+    this.taskService.localUpdateTask()
   }
 }

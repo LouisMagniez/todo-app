@@ -18,7 +18,10 @@
 
       <mat-list-item *ngFor="let task of taskList; last as last">
         <div class="task">
-          <mat-checkbox [(ngModel)]="task.done">
+          <mat-checkbox
+            [(ngModel)]="task.done"
+            (ngModelChange)="isDoneManage()"
+          >
             <span
               id="task{{ task.id }}"
               class="task-list"

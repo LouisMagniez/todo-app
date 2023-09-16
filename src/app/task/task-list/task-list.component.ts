@@ -28,4 +28,8 @@ export class TaskListComponent {
       }, 0)
     }
   }
+
+  isDoneManage() {
+    this.taskService.localUpdateTask()
+  }
 }
