@@ -31,4 +31,7 @@ export class TaskListComponent {
   filteredTaskList(option: string) {
     return this.taskService.statusFilter(option)
   }
+  taskCounter(counterType: string) {
+    return this.taskService.manageTaskCounter(counterType)
+  }
 }

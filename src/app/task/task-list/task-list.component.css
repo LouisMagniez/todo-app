@@ -44,3 +44,8 @@
 .divider {
   margin: 8px;
 }
+
+.task-counter {
+  display: flex;
+  justify-content: space-evenly;
+}
