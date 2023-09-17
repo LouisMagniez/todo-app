@@ -1,4 +1,13 @@
-<div class="search-task"></div>
+<div class="search-task">
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Search..."
+      [(ngModel)]="search.value"
+      #search
+    />
+  </mat-form-field>
+</div>
 <div class="chips">
   <mat-chip-listbox
     aria-label="chip-filter"
@@ -16,7 +25,12 @@
     <mat-card-content>
       <app-task-form></app-task-form>
 
-      <mat-list-item *ngFor="let task of taskList; last as last">
+      <mat-list-item
+        *ngFor="
+          let task of filteredTaskList(search.value, option);
+          last as last
+        "
+      >
         <div class="task">
           <mat-checkbox
             [(ngModel)]="task.done"

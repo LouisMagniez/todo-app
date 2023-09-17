@@ -32,4 +32,16 @@ export class TaskListComponent {
   isDoneManage() {
     this.taskService.localUpdateTask()
   }
+
+  filteredTaskList(filter: string, option: string) {
+    if (filter) {
+      let searchedTaskList = this.taskService.searchFilter(filter)
+      return (searchedTaskList = this.taskService.statusFilter(
+        searchedTaskList,
+        option
+      ))
+    } else {
+      return this.taskService.statusFilter(this.taskList, option)
+    }
+  }
 }
