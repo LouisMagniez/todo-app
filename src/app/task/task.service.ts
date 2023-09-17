@@ -4,9 +4,6 @@ import { TASKS } from "./mock-task-list"
 
 @Injectable()
 export class TaskService {
-  task!: Task
-  TASK = TASKS
-
   getTaskList(): Task[] {
     return TASKS
   }
@@ -17,7 +14,7 @@ export class TaskService {
 
   searchFilter(filterBy: string): Task[] {
     filterBy = filterBy.toLocaleLowerCase()
-    return this.TASK.filter(
+    return TASKS.filter(
       (task: Task) => task.content.toLocaleLowerCase().indexOf(filterBy) !== -1
     )
   }
