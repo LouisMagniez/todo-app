@@ -30,17 +30,14 @@
   word-break: break-all;
 }
 
-.chips {
+.filter-toggle {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  margin: 0px 0px 17px 17px;
 }
 
 .search-task {
   display: flex;
   justify-content: center;
   margin-top: 3em;
-}
-
-.divider {
-  margin: 8px;
 }

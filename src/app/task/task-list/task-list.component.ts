@@ -10,8 +10,6 @@ import { TaskService } from "../task.service"
 export class TaskListComponent {
   constructor(private taskService: TaskService) {}
 
-  option: string = "SEE_ALL"
-
   taskList!: Task[]
 
   isChecked: boolean = true
@@ -20,15 +18,11 @@ export class TaskListComponent {
     this.taskList = this.taskService.getTaskList()
   }
 
-  chipManage() {
-    if (this.option === undefined) {
-      setTimeout(() => {
-        this.option = "SEE_ALL"
-      }, 0)
+  filteredList(filter: string): Task[] {
+    if (filter) {
+      return this.taskService.searchFilter(filter)
+    } else {
+      return this.taskService.getTaskList()
     }
-  }
-
-  filteredTaskList(option: string) {
-    return this.taskService.statusFilter(option)
   }
 }
