@@ -27,4 +27,8 @@ export class TaskListComponent {
       }, 0)
     }
   }
+
+  filteredTaskList(option: string) {
+    return this.taskService.statusFilter(option)
+  }
 }
