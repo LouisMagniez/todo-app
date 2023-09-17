@@ -1,8 +1,7 @@
-import { Component, Input } from "@angular/core"
+import { Component } from "@angular/core"
 import { Task } from "../task"
 import { Router } from "@angular/router"
 import { TaskService } from "../task.service"
-import { TASKS } from "../mock-task-list"
 
 @Component({
   selector: "app-task-form",
@@ -19,12 +18,12 @@ export class TaskFormComponent {
 
   ngOnInit() {
     this.task = new Task()
-    this.task.id = TASKS.length + 1
+    this.task.id = this.taskService.generateNewTaskId()
   }
 
   onSubmit() {
     this.taskService.addTask(this.task)
     this.task = new Task()
-    this.task.id = TASKS.length + 1
+    this.task.id = this.taskService.generateNewTaskId()
   }
 }

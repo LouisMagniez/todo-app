@@ -10,6 +10,8 @@ import { TaskService } from "../task.service"
 export class TaskListComponent {
   constructor(private taskService: TaskService) {}
 
+  option: string = "SEE_ALL"
+
   taskList!: Task[]
 
   isChecked: boolean = true
@@ -18,11 +20,23 @@ export class TaskListComponent {
     this.taskList = this.taskService.getTaskList()
   }
 
-  filteredList(filter: string): Task[] {
+  chipManage() {
+    if (this.option === undefined) {
+      setTimeout(() => {
+        this.option = "SEE_ALL"
+      }, 0)
+    }
+  }
+
+  filteredTaskList(filter: string, option: string) {
     if (filter) {
-      return this.taskService.searchFilter(filter)
+      let searchedTaskList = this.taskService.searchFilter(filter)
+      return (searchedTaskList = this.taskService.statusFilter(
+        searchedTaskList,
+        option
+      ))
     } else {
-      return this.taskService.getTaskList()
+      return this.taskService.statusFilter(this.taskList, option)
     }
   }
 }
