@@ -8,7 +8,15 @@ export class TaskService {
     return TASKS
   }
 
-  addTask(task: Task): any {
+  getTaskListLength(): number {
+    return TASKS.length
+  }
+
+  generateNewTaskId(): number {
+    return TASKS.length + 1
+  }
+
+  addTask(task: Task) {
     return TASKS.unshift(task)
   }
 
@@ -17,5 +25,21 @@ export class TaskService {
     return TASKS.filter(
       (task: Task) => task.content.toLocaleLowerCase().indexOf(filterBy) !== -1
     )
+  }
+
+  statusFilter(filteredTaskList: Task[], option: string) {
+    switch (option) {
+      case "SEE_ALL":
+        return filteredTaskList
+
+      case "TO_DO":
+        return filteredTaskList.filter((task) => !task.done)
+
+      case "DONE":
+        return filteredTaskList.filter((task) => task.done)
+
+      default:
+        return filteredTaskList
+    }
   }
 }
