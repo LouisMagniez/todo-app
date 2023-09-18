@@ -12,16 +12,11 @@ export class TaskListComponent {
 
   option: string = "SEE_ALL"
 
-  taskList!: Task[]
+  taskList: Task[] = this.taskService.getTaskList()
 
-  isChecked: boolean = true
+  ngOnInit() {}
 
-  ngOnInit() {
-    this.taskService.localInitTASKS()
-    this.taskList = this.taskService.getTaskList()
-  }
-
-  chipManage() {
+  onChangeChipCheckUndefined() {
     if (this.option === undefined) {
       setTimeout(() => {
         this.option = "SEE_ALL"
@@ -29,13 +24,18 @@ export class TaskListComponent {
     }
   }
 
-  isDoneManage() {
-    this.taskService.localUpdateTask()
+  onChangeDoneStatus(task: Task) {
+    this.taskService.updateTask(task)
+    this.taskList = this.taskService.getTaskList()
   }
 
-  filteredTaskList(filter: string, option: string) {
-    if (filter) {
-      let searchedTaskList = this.taskService.searchFilter(filter)
+  onChangeForm() {
+    this.taskList = this.taskService.getTaskList()
+  }
+
+  filterTaskList(searchFilter: string, option: string) {
+    if (searchFilter) {
+      let searchedTaskList = this.taskService.searchFilter(searchFilter)
       return (searchedTaskList = this.taskService.statusFilter(
         searchedTaskList,
         option

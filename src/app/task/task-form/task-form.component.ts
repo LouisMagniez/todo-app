@@ -1,7 +1,7 @@
 import { Component } from "@angular/core"
 import { Task } from "../task"
-import { Router } from "@angular/router"
 import { TaskService } from "../task.service"
+import { TaskListComponent } from "../task-list/task-list.component"
 
 @Component({
   selector: "app-task-form",
@@ -12,8 +12,8 @@ export class TaskFormComponent {
   task!: Task
 
   constructor(
-    private router: Router,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private listComponent: TaskListComponent
   ) {}
 
   ngOnInit() {
@@ -25,6 +25,6 @@ export class TaskFormComponent {
     this.taskService.addTask(this.task)
     this.task = new Task()
     this.task.id = this.taskService.generateNewTaskId()
-    this.taskService.localUpdateTask()
+    this.listComponent.onChangeForm()
   }
 }
