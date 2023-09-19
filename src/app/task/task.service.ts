@@ -64,9 +64,13 @@ export class TaskService {
 
   searchFilter(searchedTaskList: Task[], filterBy: string): Task[] {
     filterBy = filterBy.toLocaleLowerCase()
-    return searchedTaskList.filter(
-      (task: Task) => task.content.toLocaleLowerCase().indexOf(filterBy) !== -1
-    )
+    if (searchedTaskList) {
+      searchedTaskList = searchedTaskList.filter(
+        (task: Task) =>
+          task.content.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
+    }
+    return searchedTaskList
   }
 
   statusFilter(searchedTaskList: Task[], option: string) {

@@ -34,14 +34,10 @@ export class TaskListComponent {
   }
 
   filterTaskList(searchFilter: string, option: string) {
-    if (searchFilter) {
-      let searchedTaskList = this.taskService.searchFilter(
-        this.taskList,
-        searchFilter
-      )
-      return this.taskService.statusFilter(searchedTaskList, option)
-    } else {
-      return this.taskService.statusFilter(this.taskList, option)
-    }
+    let searchedTaskList = this.taskService.searchFilter(
+      this.taskList,
+      searchFilter
+    )
+    return this.taskService.statusFilter(searchedTaskList, option)
   }
 }
