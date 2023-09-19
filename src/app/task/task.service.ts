@@ -73,8 +73,8 @@ export class TaskService {
     return searchedTaskList
   }
 
-  statusFilter(searchedTaskList: Task[], option: string) {
-    switch (option) {
+  statusFilter(searchedTaskList: Task[], filterDoneStatus: string) {
+    switch (filterDoneStatus) {
       case "SEE_ALL":
         return searchedTaskList
 

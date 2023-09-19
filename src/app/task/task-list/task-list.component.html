@@ -11,7 +11,7 @@
 <div class="chips">
   <mat-chip-listbox
     aria-label="chip-filter"
-    [(ngModel)]="option"
+    [(ngModel)]="filterDoneStatus"
     (ngModelChange)="onChangeChipCheckUndefined()"
   >
     <mat-chip-option value="SEE_ALL" color="accent">See all</mat-chip-option>
@@ -26,7 +26,10 @@
       <app-task-form></app-task-form>
 
       <mat-list-item
-        *ngFor="let task of filterTaskList(search.value, option); last as last"
+        *ngFor="
+          let task of filterTaskList(search.value, filterDoneStatus);
+          last as last
+        "
       >
         <div class="task">
           <mat-checkbox

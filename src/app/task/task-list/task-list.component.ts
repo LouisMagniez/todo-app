@@ -10,16 +10,16 @@ import { TaskService } from "../task.service"
 export class TaskListComponent {
   constructor(private taskService: TaskService) {}
 
-  option: string = "SEE_ALL"
+  filterDoneStatus: string = "SEE_ALL"
 
   taskList: Task[] = this.taskService.getTaskList()
 
   ngOnInit() {}
 
   onChangeChipCheckUndefined() {
-    if (this.option === undefined) {
+    if (this.filterDoneStatus === undefined) {
       setTimeout(() => {
-        this.option = "SEE_ALL"
+        this.filterDoneStatus = "SEE_ALL"
       }, 0)
     }
   }
@@ -33,11 +33,11 @@ export class TaskListComponent {
     this.taskList = this.taskService.getTaskList()
   }
 
-  filterTaskList(searchFilter: string, option: string) {
+  filterTaskList(searchFilter: string, filterDoneStatus: string) {
     let searchedTaskList = this.taskService.searchFilter(
       this.taskList,
       searchFilter
     )
-    return this.taskService.statusFilter(searchedTaskList, option)
+    return this.taskService.statusFilter(searchedTaskList, filterDoneStatus)
   }
 }
