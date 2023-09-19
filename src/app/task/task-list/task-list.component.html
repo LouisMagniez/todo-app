@@ -3,7 +3,7 @@
     <input
       matInput
       placeholder="Search..."
-      [(ngModel)]="search.value"
+      (ngModelChange)="(search.value)"
       #search
     />
   </mat-form-field>
