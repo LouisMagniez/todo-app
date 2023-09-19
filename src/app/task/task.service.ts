@@ -21,7 +21,21 @@ export class TaskService {
   }
 
   generateNewTaskId(): number {
-    return this.getTaskList().length + 1
+    let newTaskId = this.getTaskList().length + 1
+    let localTASKS = localStorage.getItem("TaskList")
+    let existingId
+    if (localTASKS) {
+      existingId = JSON.parse(localTASKS).filter(
+        (task: { id: number }) => task.id === newTaskId
+      )
+      while (existingId.id === newTaskId) {
+        existingId = JSON.parse(localTASKS).filter(
+          (task: { id: number }) => task.id === newTaskId
+        )
+        newTaskId++
+      }
+    }
+    return newTaskId
   }
 
   addTask(task: Task) {
@@ -48,9 +62,9 @@ export class TaskService {
     return listToSort
   }
 
-  searchFilter(filterBy: string): Task[] {
+  searchFilter(searchedTaskList: Task[], filterBy: string): Task[] {
     filterBy = filterBy.toLocaleLowerCase()
-    return this.getTaskList().filter(
+    return searchedTaskList.filter(
       (task: Task) => task.content.toLocaleLowerCase().indexOf(filterBy) !== -1
     )
   }
