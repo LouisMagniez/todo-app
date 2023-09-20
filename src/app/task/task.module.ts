@@ -22,12 +22,13 @@ import { MatChipsModule } from "@angular/material/chips"
 import {
   BrowserAnimationsModule,
   provideAnimations,
-} from "@angular/platform-browser/animations"
+} from "@angular/platform-browser/animations";
+import { TaskEditComponent } from './task-edit/task-edit.component'
 
 const taskRoutes: Routes = [{ path: "tasks", component: TaskListComponent }]
 
 @NgModule({
-  declarations: [TaskFormComponent, TaskListComponent],
+  declarations: [TaskFormComponent, TaskListComponent, TaskEditComponent],
 
   imports: [
     CommonModule,
