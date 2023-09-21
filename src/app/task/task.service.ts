@@ -1,45 +1,80 @@
 import { Injectable } from "@angular/core"
 import { Task } from "./task"
-import { TASKS } from "./mock-task-list"
 
 @Injectable()
 export class TaskService {
   getTaskList(): Task[] {
-    return TASKS
+    let localTASKS = localStorage.getItem("TaskList")
+    let parsedTaskList: Task[] = []
+    if (localTASKS) {
+      for (let task of JSON.parse(localTASKS)) {
+        parsedTaskList.unshift(task)
+      }
+    }
+
+    this.sortTaskList(parsedTaskList)
+    return parsedTaskList
   }
 
   getTaskListLength(): number {
-    return TASKS.length
+    return this.getTaskList().length
   }
 
   generateNewTaskId(): number {
-    return TASKS.length + 1
+    let newTaskId = 1
+    let localTASKS = localStorage.getItem("TaskList")
+    if (localTASKS) {
+      newTaskId = Math.max(...this.getTaskList().map((task) => task.id)) + 1
+    }
+    return newTaskId
   }
 
   addTask(task: Task) {
-    return TASKS.unshift(task)
+    let taskList: Task[] = this.getTaskList()
+    task.id = this.generateNewTaskId()
+    taskList.push(task)
+    localStorage.setItem("TaskList", JSON.stringify(taskList))
   }
 
-  searchFilter(filterBy: string): Task[] {
+  updateTask(taskToUpdate: Task) {
+    let taskList: Task[] = this.getTaskList()
+    for (let task of taskList) {
+      if (task.id === taskToUpdate.id) {
+        taskList.splice(taskList.indexOf(task), 1, taskToUpdate)
+      }
+    }
+    localStorage.setItem("TaskList", JSON.stringify(taskList))
+  }
+
+  sortTaskList(listToSort: Task[]) {
+    listToSort.sort((a, b) => b.id - a.id)
+    return listToSort
+  }
+
+  searchFilter(searchedTaskList: Task[], filterBy: string): Task[] {
     filterBy = filterBy.toLocaleLowerCase()
-    return TASKS.filter(
-      (task: Task) => task.content.toLocaleLowerCase().indexOf(filterBy) !== -1
-    )
+    if (searchedTaskList) {
+      searchedTaskList = searchedTaskList.filter(
+        (task: Task) =>
+          task.content.toLocaleLowerCase().indexOf(filterBy) !== -1
+      )
+    }
+    return searchedTaskList
   }
 
-  statusFilter(filteredTaskList: Task[], option: string) {
-    switch (option) {
+  statusFilter(searchedTaskList: Task[], filterDoneStatus: string) {
+    switch (filterDoneStatus) {
       case "SEE_ALL":
-        return filteredTaskList
+        return searchedTaskList
 
       case "TO_DO":
-        return filteredTaskList.filter((task) => !task.done)
+        return searchedTaskList.filter((task) => !task.done)
 
       case "DONE":
-        return filteredTaskList.filter((task) => task.done)
+        return searchedTaskList.filter((task) => task.done)
 
       default:
-        return filteredTaskList
+        return searchedTaskList
     }
   }
 }

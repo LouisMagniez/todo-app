@@ -10,33 +10,38 @@ import { TaskService } from "../task.service"
 export class TaskListComponent {
   constructor(private taskService: TaskService) {}
 
-  option: string = "SEE_ALL"
+  filterDoneStatus: string = "SEE_ALL"
 
-  taskList!: Task[]
+  taskList: Task[] = this.taskService.getTaskList()
 
-  isChecked: boolean = true
+  ngOnInit() {}
 
-  ngOnInit() {
-    this.taskList = this.taskService.getTaskList()
-  }
-
-  chipManage() {
-    if (this.option === undefined) {
+  onChangeChipCheckUndefined() {
+    if (this.filterDoneStatus === undefined) {
       setTimeout(() => {
-        this.option = "SEE_ALL"
+        this.filterDoneStatus = "SEE_ALL"
       }, 0)
     }
   }
 
-  filteredTaskList(filter: string, option: string) {
-    if (filter) {
-      let searchedTaskList = this.taskService.searchFilter(filter)
-      return (searchedTaskList = this.taskService.statusFilter(
-        searchedTaskList,
-        option
-      ))
-    } else {
-      return this.taskService.statusFilter(this.taskList, option)
-    }
+  onChangeDoneStatus(task: Task) {
+    this.taskService.updateTask(task)
+    this.taskList = this.taskService.getTaskList()
+  }
+
+  onChangeForm() {
+    this.taskList = this.taskService.getTaskList()
+  }
+
+  filterTaskList(searchFilter: string, filterDoneStatus: string) {
+    let searchedTaskList = this.taskService.searchFilter(
+      this.taskList,
+      searchFilter
+    )
+    return this.taskService.statusFilter(searchedTaskList, filterDoneStatus)
+  }
+
+  trackById(_index: number, task: Task) {
+    return task.id
   }
 }

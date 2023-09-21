@@ -1,6 +1,5 @@
-import { Component } from "@angular/core"
+import { Component, EventEmitter, Output } from "@angular/core"
 import { Task } from "../task"
-import { Router } from "@angular/router"
 import { TaskService } from "../task.service"
 
 @Component({
@@ -11,19 +10,21 @@ import { TaskService } from "../task.service"
 export class TaskFormComponent {
   task!: Task
 
-  constructor(
-    private router: Router,
-    private taskService: TaskService
-  ) {}
+  @Output() onChangeFormEvent = new EventEmitter<null>()
+
+  constructor(private taskService: TaskService) {}
 
   ngOnInit() {
-    this.task = new Task()
-    this.task.id = this.taskService.generateNewTaskId()
+    this.resetCurrentTask()
   }
 
   onSubmit() {
     this.taskService.addTask(this.task)
+    this.resetCurrentTask()
+    this.onChangeFormEvent.emit()
+  }
+
+  resetCurrentTask() {
     this.task = new Task()
-    this.task.id = this.taskService.generateNewTaskId()
   }
 }

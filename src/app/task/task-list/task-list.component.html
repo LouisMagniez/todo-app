@@ -3,7 +3,7 @@
     <input
       matInput
       placeholder="Search..."
-      [(ngModel)]="search.value"
+      (ngModelChange)="(search.value)"
       #search
     />
   </mat-form-field>
@@ -11,8 +11,8 @@
 <div class="chips">
   <mat-chip-listbox
     aria-label="chip-filter"
-    [(ngModel)]="option"
-    (ngModelChange)="chipManage()"
+    [(ngModel)]="filterDoneStatus"
+    (ngModelChange)="onChangeChipCheckUndefined()"
   >
     <mat-chip-option value="SEE_ALL" color="accent">See all</mat-chip-option>
     <mat-chip-option value="TO_DO" color="accent">To do</mat-chip-option>
@@ -23,16 +23,20 @@
   <mat-card class="task-card">
     <mat-card-header class="align-center"> </mat-card-header>
     <mat-card-content>
-      <app-task-form></app-task-form>
+      <app-task-form (onChangeFormEvent)="onChangeForm()"></app-task-form>
 
       <mat-list-item
         *ngFor="
-          let task of filteredTaskList(search.value, option);
+          let task of filterTaskList(search.value, filterDoneStatus);
+          trackBy: trackById;
           last as last
         "
       >
         <div class="task">
-          <mat-checkbox [(ngModel)]="task.done">
+          <mat-checkbox
+            [(ngModel)]="task.done"
+            (ngModelChange)="onChangeDoneStatus(task)"
+          >
             <span
               id="task{{ task.id }}"
               class="task-list"
