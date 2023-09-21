@@ -40,4 +40,8 @@ export class TaskListComponent {
     )
     return this.taskService.statusFilter(searchedTaskList, filterDoneStatus)
   }
+
+  trackById(_index: number, task: Task) {
+    return task.id
+  }
 }

@@ -28,6 +28,7 @@
       <mat-list-item
         *ngFor="
           let task of filterTaskList(search.value, filterDoneStatus);
+          trackBy: trackById;
           last as last
         "
       >
