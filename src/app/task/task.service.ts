@@ -31,6 +31,7 @@ export class TaskService {
 
   addTask(task: Task) {
     let taskList: Task[] = this.getTaskList()
+    task.id = this.generateNewTaskId()
     taskList.push(task)
     localStorage.setItem("TaskList", JSON.stringify(taskList))
   }

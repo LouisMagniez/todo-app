@@ -1,7 +1,6 @@
-import { Component } from "@angular/core"
+import { Component, EventEmitter, Output } from "@angular/core"
 import { Task } from "../task"
 import { TaskService } from "../task.service"
-import { TaskListComponent } from "../task-list/task-list.component"
 
 @Component({
   selector: "app-task-form",
@@ -11,20 +10,21 @@ import { TaskListComponent } from "../task-list/task-list.component"
 export class TaskFormComponent {
   task!: Task
 
-  constructor(
-    private taskService: TaskService,
-    private listComponent: TaskListComponent
-  ) {}
+  @Output() onChangeFormEvent = new EventEmitter<null>()
+
+  constructor(private taskService: TaskService) {}
 
   ngOnInit() {
-    this.task = new Task()
-    this.task.id = this.taskService.generateNewTaskId()
+    this.resetCurrentTask()
   }
 
   onSubmit() {
     this.taskService.addTask(this.task)
+    this.resetCurrentTask()
+    this.onChangeFormEvent.emit()
+  }
+
+  resetCurrentTask() {
     this.task = new Task()
-    this.task.id = this.taskService.generateNewTaskId()
-    this.listComponent.onChangeForm()
   }
 }
