@@ -5,6 +5,4 @@ import { Component } from "@angular/core"
   templateUrl: "./task-edit.component.html",
   styleUrls: ["./task-edit.component.css"],
 })
-export class TaskEditComponent {
-  onClickEdit() {}
-}
+export class TaskEditComponent {}

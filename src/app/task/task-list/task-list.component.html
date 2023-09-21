@@ -33,18 +33,27 @@
       >
         <div class="task">
           <mat-checkbox
+            [disabled]="task.edit"
             [(ngModel)]="task.done"
             (ngModelChange)="onChangeDoneStatus(task)"
+          ></mat-checkbox>
+          <span
+            [hidden]="task.edit"
+            id="task{{ task.id }}"
+            class="task-list"
+            [ngClass]="{ 'task-done': task.done }"
           >
-            <span
-              id="task{{ task.id }}"
-              class="task-list"
-              [ngClass]="{ 'task-done': task.done }"
-            >
-              {{ task.content }}
-            </span>
-          </mat-checkbox>
-          <app-task-edit></app-task-edit>
+            {{ task.content }}
+          </span>
+          <div [hidden]="!task.edit"><app-task-edit></app-task-edit></div>
+          <button
+            mat-icon-button
+            matTooltip="Edit"
+            aria-label="Button to edit a task"
+            (click)="onClickEdit(task)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
         </div>
 
         <div class="divider">

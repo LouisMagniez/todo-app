@@ -40,4 +40,9 @@ export class TaskListComponent {
     )
     return this.taskService.statusFilter(searchedTaskList, filterDoneStatus)
   }
+
+  onClickEdit(task: Task) {
+    task.edit = true
+    console.log(task.edit)
+  }
 }
