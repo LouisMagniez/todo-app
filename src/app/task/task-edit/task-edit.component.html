@@ -4,7 +4,8 @@
       <input
         matInput
         #taskEditInput
-        autofocus
+        cdkTrapFocus
+        [cdkTrapFocusAutoCapture]="true"
         maxlength="200"
         type="text"
         id="editContent"
