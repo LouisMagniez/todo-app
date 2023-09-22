@@ -25,7 +25,7 @@
 
 .task {
   display: flex;
-  text-align: left;
+  align-items: center;
   flex-wrap: wrap;
   word-break: break-all;
 }

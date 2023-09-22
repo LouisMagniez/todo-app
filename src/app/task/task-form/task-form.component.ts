@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from "@angular/core"
+import { Component, EventEmitter, Output, Input } from "@angular/core"
 import { Task } from "../task"
 import { TaskService } from "../task.service"
 
@@ -10,7 +10,7 @@ import { TaskService } from "../task.service"
 export class TaskFormComponent {
   task!: Task
 
-  @Output() onChangeFormEvent = new EventEmitter<null>()
+  @Output() refreshTaskListEvent = new EventEmitter<null>()
 
   constructor(private taskService: TaskService) {}
 
@@ -21,7 +21,7 @@ export class TaskFormComponent {
   onSubmit() {
     this.taskService.addTask(this.task)
     this.resetCurrentTask()
-    this.onChangeFormEvent.emit()
+    this.refreshTaskListEvent.emit()
   }
 
   resetCurrentTask() {

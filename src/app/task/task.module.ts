@@ -19,18 +19,21 @@ import { BrowserModule } from "@angular/platform-browser"
 import { ReactiveFormsModule } from "@angular/forms"
 import { MatRadioModule } from "@angular/material/radio"
 import { MatChipsModule } from "@angular/material/chips"
+import { A11yModule } from "@angular/cdk/a11y"
 import {
   BrowserAnimationsModule,
   provideAnimations,
 } from "@angular/platform-browser/animations"
+import { TaskEditComponent } from "./task-edit/task-edit.component"
 
 const taskRoutes: Routes = [{ path: "tasks", component: TaskListComponent }]
 
 @NgModule({
-  declarations: [TaskFormComponent, TaskListComponent],
+  declarations: [TaskFormComponent, TaskListComponent, TaskEditComponent],
 
   imports: [
     CommonModule,
+    A11yModule,
     FormsModule,
     MatButtonModule,
     MatIconModule,

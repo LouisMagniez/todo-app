@@ -16,6 +16,10 @@ export class TaskListComponent {
 
   ngOnInit() {}
 
+  refreshTaskList() {
+    this.taskList = this.taskService.getTaskList()
+  }
+
   onChangeChipCheckUndefined() {
     if (this.filterDoneStatus === undefined) {
       setTimeout(() => {
@@ -26,11 +30,6 @@ export class TaskListComponent {
 
   onChangeDoneStatus(task: Task) {
     this.taskService.updateTask(task)
-    this.taskList = this.taskService.getTaskList()
-  }
-
-  onChangeForm() {
-    this.taskList = this.taskService.getTaskList()
   }
 
   filterTaskList(searchFilter: string, filterDoneStatus: string) {
@@ -39,6 +38,14 @@ export class TaskListComponent {
       searchFilter
     )
     return this.taskService.statusFilter(searchedTaskList, filterDoneStatus)
+  }
+
+  onClickEdit(task: Task) {
+    task.edit = true
+  }
+
+  onClickDelete(task: Task) {
+    this.taskService.deleteTask(task)
   }
 
   trackById(_index: number, task: Task) {

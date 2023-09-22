@@ -22,7 +22,7 @@
 <div class="align-center">
   <mat-card class="task-card">
     <mat-card-content>
-      <app-task-form (onChangeFormEvent)="onChangeForm()"></app-task-form>
+      <app-task-form (refreshTaskListEvent)="refreshTaskList()"></app-task-form>
 
       <mat-list-item
         *ngFor="
@@ -33,9 +33,11 @@
       >
         <div class="task">
           <mat-checkbox
+            [disabled]="task.edit"
             [(ngModel)]="task.done"
             (ngModelChange)="onChangeDoneStatus(task)"
-          >
+          ></mat-checkbox>
+          <div [hidden]="task.edit">
             <span
               id="task{{ task.id }}"
               class="task-list"
@@ -43,7 +45,27 @@
             >
               {{ task.content }}
             </span>
-          </mat-checkbox>
+            <button
+              mat-icon-button
+              matTooltip="Edit"
+              aria-label="Button to edit a task"
+              (click)="onClickEdit(task)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              matTooltip="Delete"
+              aria-label="Button to delete a task"
+              (click)="onClickDelete(task); refreshTaskList()"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+          <div [hidden]="!task.edit">
+            <app-task-edit [taskToEdit]="task"></app-task-edit>
+          </div>
         </div>
         <div class="divider">
           <mat-divider *ngIf="!last"></mat-divider>
