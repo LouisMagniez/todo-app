@@ -1,4 +1,4 @@
-import { Component } from "@angular/core"
+import { Component, Input } from "@angular/core"
 import { Task } from "../task"
 import { TaskService } from "../task.service"
 import { TaskListComponent } from "../task-list/task-list.component"

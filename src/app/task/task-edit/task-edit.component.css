@@ -1,1 +1,7 @@
-
+.edit-form {
+  display: flex;
+}
+.button {
+  display: flex;
+  margin: 2%;
+}

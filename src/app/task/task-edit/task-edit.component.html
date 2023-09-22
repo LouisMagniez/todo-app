@@ -1,1 +1,39 @@
-
+<form (ngSubmit)="onSubmit()" #taskForm="ngForm" *ngIf="taskToEdit.edit">
+  <div class="edit-form">
+    <mat-form-field class="form-group" class="edit-task">
+      <input
+        matInput
+        #taskEditInput
+        autofocus
+        maxlength="200"
+        type="text"
+        id="editContent"
+        [(ngModel)]="taskToEdit.content"
+        name="editContent"
+        #editContent="ngModel"
+      />
+      <button
+        *ngIf="taskToEdit.content"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        type="button"
+        (click)="taskToEdit.content = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint align="end">{{ taskEditInput.value.length }}/200</mat-hint>
+    </mat-form-field>
+    <div class="button">
+      <button
+        mat-icon-button
+        color="primary"
+        type="submit"
+        class="edit-button"
+        [disabled]="!taskEditInput.value"
+      >
+        <mat-icon>check</mat-icon>
+      </button>
+    </div>
+  </div>
+</form>

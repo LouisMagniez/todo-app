@@ -43,6 +43,5 @@ export class TaskListComponent {
 
   onClickEdit(task: Task) {
     task.edit = true
-    console.log(task.edit)
   }
 }
