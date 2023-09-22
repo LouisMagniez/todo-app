@@ -11,7 +11,6 @@ export class TaskService {
         parsedTaskList.unshift(task)
       }
     }
-    console.log("in getTask : ", parsedTaskList)
     this.sortTaskList(parsedTaskList)
     return parsedTaskList
   }
@@ -21,31 +20,26 @@ export class TaskService {
   }
 
   generateNewTaskId(): number {
-    let newTaskId = this.getTaskList().length + 1
+    let newTaskId = 1
     let localTASKS = localStorage.getItem("TaskList")
-    let existingId
     if (localTASKS) {
-      existingId = JSON.parse(localTASKS).filter(
-        (task: { id: number }) => task.id === newTaskId
-      )
-      while (existingId.id === newTaskId) {
-        existingId = JSON.parse(localTASKS).filter(
-          (task: { id: number }) => task.id === newTaskId
-        )
-        newTaskId++
-      }
+      newTaskId = Math.max(...this.getTaskList().map((task) => task.id)) + 1
     }
     return newTaskId
   }
 
-  addTask(taskToUpdate: Task) {
+  addTask(taskToAdd: Task) {
     let taskList: Task[] = this.getTaskList()
-    taskList.push(taskToUpdate)
+    taskToAdd.id = this.generateNewTaskId()
+    taskList.push(taskToAdd)
     localStorage.setItem("TaskList", JSON.stringify(taskList))
+    console.log(taskToAdd)
   }
 
   deleteTask(taskToDelete: Task) {
     let taskList: Task[] = this.getTaskList()
+    console.log(taskList)
+    console.log(taskToDelete)
     for (let task of taskList) {
       if (task.id === taskToDelete.id) {
         taskList.splice(taskList.indexOf(task), 1)

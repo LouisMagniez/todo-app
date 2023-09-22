@@ -47,4 +47,8 @@ export class TaskListComponent {
   onClickDelete(task: Task) {
     this.taskService.deleteTask(task)
   }
+
+  trackById(_index: number, task: Task) {
+    return task.id
+  }
 }
