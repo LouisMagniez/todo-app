@@ -53,6 +53,14 @@
             >
               <mat-icon>edit</mat-icon>
             </button>
+            <button
+              mat-icon-button
+              matTooltip="Delete"
+              aria-label="Button to delete a task"
+              (click)="onClickDelete(task); refreshTaskList()"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
           </div>
 
           <div [hidden]="!task.edit">

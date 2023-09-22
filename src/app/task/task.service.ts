@@ -38,11 +38,20 @@ export class TaskService {
     return newTaskId
   }
 
-  addTask(task: Task) {
+  addTask(taskToUpdate: Task) {
     let taskList: Task[] = this.getTaskList()
-    taskList.push(task)
+    taskList.push(taskToUpdate)
     localStorage.setItem("TaskList", JSON.stringify(taskList))
-    console.log("localStorage in addTask : ", localStorage)
+  }
+
+  deleteTask(taskToDelete: Task) {
+    let taskList: Task[] = this.getTaskList()
+    for (let task of taskList) {
+      if (task.id === taskToDelete.id) {
+        taskList.splice(taskList.indexOf(task), 1)
+      }
+    }
+    localStorage.setItem("TaskList", JSON.stringify(taskList))
   }
 
   updateTask(taskToUpdate: Task) {
@@ -50,11 +59,9 @@ export class TaskService {
     for (let task of taskList) {
       if (task.id === taskToUpdate.id) {
         taskList.splice(taskList.indexOf(task), 1, taskToUpdate)
-        console.log("index of the task to replace : ", taskList.indexOf(task))
       }
     }
     localStorage.setItem("TaskList", JSON.stringify(taskList))
-    console.log("localStorage in updateTask : ", localStorage)
   }
 
   sortTaskList(listToSort: Task[]) {
