@@ -96,10 +96,10 @@ export class TaskService {
         return this.getTaskListLength()
 
       case "TO_DO":
-        return this.statusFilter("TO_DO").length
+        return this.statusFilter(this.getTaskList(), "TO_DO").length
 
       case "DONE":
-        return this.statusFilter("DONE").length
+        return this.statusFilter(this.getTaskList(), "DONE").length
 
       default:
         return 0
