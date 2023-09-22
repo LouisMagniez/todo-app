@@ -48,4 +48,9 @@
 .task-counter {
   display: flex;
   justify-content: space-evenly;
+  margin-left: 50%;
+}
+
+.counter-total {
+  font-weight: bold;
 }

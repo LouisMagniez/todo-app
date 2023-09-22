@@ -12,11 +12,6 @@
 </div>
 <div class="align-center">
   <mat-card class="task-card">
-    <mat-card-header class="task-counter">
-      <div>{{ taskCounter("ALL") }} Task</div>
-      <div>{{ taskCounter("TO_DO") }} Task to do</div>
-      <div>{{ taskCounter("DONE") }} Task done</div>
-    </mat-card-header>
     <mat-card-content>
       <app-task-form></app-task-form>
 
@@ -39,5 +34,12 @@
         </div>
       </mat-list-item>
     </mat-card-content>
+    <mat-card-footer class="task-counter">
+      <div>{{ taskCounter("TO_DO") }} Todo</div>
+      <mat-divider [vertical]="true"></mat-divider>
+      <div>{{ taskCounter("DONE") }} Done</div>
+      <mat-divider [vertical]="true"></mat-divider>
+      <div class="counter-total">Total : {{ taskCounter("ALL") }}</div>
+    </mat-card-footer>
   </mat-card>
 </div>
