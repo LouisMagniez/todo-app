@@ -77,4 +77,20 @@ export class TaskService {
         return searchedTaskList
     }
   }
+
+  manageTaskCounter(counterType: string) {
+    switch (counterType) {
+      case "ALL":
+        return this.getTaskListLength()
+
+      case "TO_DO":
+        return this.statusFilter("TO_DO").length
+
+      case "DONE":
+        return this.statusFilter("DONE").length
+
+      default:
+        return 0
+    }
+  }
 }
