@@ -23,13 +23,6 @@
   text-decoration: line-through;
 }
 
-.task {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  word-break: break-all;
-}
-
 .chips {
   display: flex;
   justify-content: center;
@@ -48,9 +41,27 @@
 .task-counter {
   display: flex;
   justify-content: space-evenly;
-  margin-left: 50%;
+  margin: 0px 8px 8px 296px;
 }
 
 .counter-total {
   font-weight: bold;
+}
+
+.list-item {
+  position: relative;
+}
+
+.task-body {
+  display: flex;
+  width: 75%;
+  word-break: break-all;
+  text-wrap: wrap;
+}
+
+.buttons {
+  display: flex;
+  position: absolute;
+  top: 8px;
+  left: 120px;
 }
