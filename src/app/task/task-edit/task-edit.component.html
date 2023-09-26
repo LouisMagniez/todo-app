@@ -1,18 +1,19 @@
 <form (ngSubmit)="onSubmit()" #taskForm="ngForm" *ngIf="taskToEdit.edit">
   <div class="edit-form">
-    <mat-form-field class="form-group" class="edit-task">
-      <input
-        matInput
-        #taskEditInput
-        cdkTrapFocus
-        [cdkTrapFocusAutoCapture]="true"
-        maxlength="200"
-        type="text"
-        id="editContent"
-        [(ngModel)]="taskToEdit.content"
-        name="editContent"
-        #editContent="ngModel"
-      />
+    <mat-form-field class="form-group">
+      <div class="edit-input">
+        <input
+          matInput
+          #taskEditInput
+          cdkTrapFocus
+          [cdkTrapFocusAutoCapture]="true"
+          maxlength="200"
+          id="editContent"
+          [(ngModel)]="taskToEdit.content"
+          name="editContent"
+        />
+      </div>
+
       <button
         *ngIf="taskToEdit.content"
         matSuffix

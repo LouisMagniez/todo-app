@@ -1,9 +1,9 @@
 <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
   <div class="align-center">
-    <mat-form-field class="form-group" class="new-task">
-      <mat-label for="title">Add a new task</mat-label>
+    <mat-form-field class="form-group" class="new-task" appearance="outline">
       <input
         matInput
+        placeholder="Add a new task"
         #input
         maxlength="200"
         type="text"

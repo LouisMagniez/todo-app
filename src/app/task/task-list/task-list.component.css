@@ -38,30 +38,39 @@
   margin: 8px;
 }
 
-.task-counter {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 0px 8px 8px 296px;
-}
-
-.counter-total {
-  font-weight: bold;
-}
-
-.list-item {
-  position: relative;
-}
-
 .task-body {
   display: flex;
   width: 75%;
   word-break: break-all;
-  text-wrap: wrap;
+  margin-top: 4px;
+}
+
+.button-container {
+  display: flex;
 }
 
 .buttons {
   display: flex;
-  position: absolute;
-  top: 8px;
-  left: 120px;
+}
+
+.task {
+  display: flex;
+}
+
+.task-counter {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0px 12px 8px 296px;
+  color: grey;
+}
+
+.counter-todo-done {
+  display: flex;
+  justify-content: space-evenly;
+  margin-right: 12px;
+  width: 124px;
+}
+
+.counter-total {
+  font-weight: bold;
 }
