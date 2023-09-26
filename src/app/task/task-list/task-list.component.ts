@@ -51,7 +51,14 @@ export class TaskListComponent {
   trackById(_index: number, task: Task) {
     return task.id
   }
-  taskCounter(counterType: string) {
-    return this.taskService.manageTaskCounter(counterType)
+  taskCounter(
+    searchFilter: string,
+    filterDoneStatus: string,
+    counterType: string
+  ) {
+    return this.taskService.manageTaskCounter(
+      counterType,
+      this.filterTaskList(searchFilter, filterDoneStatus)
+    )
   }
 }

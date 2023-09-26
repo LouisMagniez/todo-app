@@ -73,11 +73,13 @@
       </mat-list-item>
     </mat-card-content>
     <mat-card-footer class="task-counter">
-      <div>{{ taskCounter("TO_DO") }} Todo</div>
+      <div>{{ taskCounter(search.value, filterDoneStatus, "TO_DO") }} Todo</div>
       <mat-divider [vertical]="true"></mat-divider>
-      <div>{{ taskCounter("DONE") }} Done</div>
+      <div>{{ taskCounter(search.value, filterDoneStatus, "DONE") }} Done</div>
       <mat-divider [vertical]="true"></mat-divider>
-      <div class="counter-total">Total : {{ taskCounter("ALL") }}</div>
+      <div class="counter-total">
+        Total : {{ taskCounter(search.value, filterDoneStatus, "ALL") }}
+      </div>
     </mat-card-footer>
   </mat-card>
 </div>
