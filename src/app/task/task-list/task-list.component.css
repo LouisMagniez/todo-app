@@ -55,12 +55,14 @@
 
 .task {
   display: flex;
+  margin-top: 38px;
+  height: 76px;
 }
 
 .task-counter {
   display: flex;
   justify-content: space-evenly;
-  margin: 0px 12px 8px 296px;
+  margin: -12px 12px 8px 296px;
   color: grey;
 }
 
