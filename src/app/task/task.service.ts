@@ -90,16 +90,16 @@ export class TaskService {
     }
   }
 
-  manageTaskCounter(counterType: string) {
+  manageTaskCounter(counterType: string, taskListToCount: Task[]) {
     switch (counterType) {
       case "ALL":
-        return this.getTaskListLength()
+        return taskListToCount.length
 
       case "TO_DO":
-        return this.statusFilter(this.getTaskList(), "TO_DO").length
+        return this.statusFilter(taskListToCount, "TO_DO").length
 
       case "DONE":
-        return this.statusFilter(this.getTaskList(), "DONE").length
+        return this.statusFilter(taskListToCount, "DONE").length
 
       default:
         return 0
