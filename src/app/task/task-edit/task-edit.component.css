@@ -21,9 +21,9 @@
 }
 
 .edit-input {
-  transform: scale(1.1);
+  font-size: large;
 }
 
 input {
-  transform: translateY(-3px) translateX(8px);
+  transform: translateY(-8%) translateX(-2%);
 }

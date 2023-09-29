@@ -1,12 +1,15 @@
 <div class="search-task">
-  <mat-form-field>
-    <input
-      type="search"
-      matInput
-      placeholder="Search..."
-      (ngModelChange)="(search.value)"
-      #search
-    />
+  <mat-form-field class="search-input">
+    <div class="search">
+      <input
+        type="search"
+        matInput
+        placeholder="Search..."
+        (ngModelChange)="(search.value)"
+        #search
+      />
+      <mat-icon>search</mat-icon>
+    </div>
   </mat-form-field>
 </div>
 <div class="chips">
