@@ -1,7 +1,12 @@
-<form (ngSubmit)="onSubmit()" #taskForm="ngForm" *ngIf="taskToEdit.edit">
+<form
+  (ngSubmit)="onSubmit()"
+  #taskForm="ngForm"
+  *ngIf="taskToEdit.edit"
+  class="dense-3"
+>
   <div class="edit-form">
     <mat-form-field class="form-group">
-      <div class="edit-input">
+      <div class="edit-input" contenteditable>
         <input
           matInput
           #taskEditInput

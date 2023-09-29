@@ -1,10 +1,13 @@
 .edit-form {
   display: flex;
+
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .form-group {
   display: flex;
-  width: 352px;
+  width: 354px;
 }
 
 .button {
@@ -22,5 +25,5 @@
 }
 
 input {
-  transform: translateY(-8px) translateX(7px);
+  transform: translateY(-3px) translateX(8px);
 }
