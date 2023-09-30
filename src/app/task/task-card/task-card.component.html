@@ -22,7 +22,10 @@
 <div class="align-center">
   <mat-card class="task-card">
     <mat-card-content>
-      <app-task-form (refreshTaskListEvent)="refreshTaskList()"></app-task-form>
+      <app-task-form
+        (refreshTaskListEvent)="refreshTaskList()"
+        [formCardID]="cardID"
+      ></app-task-form>
 
       <mat-list-item
         *ngFor="

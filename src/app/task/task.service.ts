@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core"
 import { Task } from "./task"
+import { Card } from "./card"
 
 @Injectable()
 export class TaskService {
-  getTaskList(): Task[] {
-    let localTASKS = localStorage.getItem("TaskList")
+  getTaskList(cardID: number): Task[] {
+    let localTASKS = localStorage.getItem("TaskList" + cardID)
     let parsedTaskList: Task[] = []
     if (localTASKS) {
       for (let task of JSON.parse(localTASKS)) {
@@ -15,29 +16,30 @@ export class TaskService {
     return parsedTaskList
   }
 
-  getTaskListLength(): number {
-    return this.getTaskList().length
-  }
-
-  generateNewTaskId(): number {
+  generateNewTaskId(cardID: number): number {
     let newTaskId = 1
-    let localTASKS = localStorage.getItem("TaskList")
+    let localTASKS = localStorage.getItem("TaskList" + cardID)
     if (localTASKS) {
-      newTaskId = Math.max(...this.getTaskList().map((task) => task.id)) + 1
+      newTaskId =
+        Math.max(...this.getTaskList(cardID).map((task) => task.id)) + 1
     }
     return newTaskId
   }
 
-  addTask(taskToAdd: Task) {
-    let taskList: Task[] = this.getTaskList()
-    taskToAdd.id = this.generateNewTaskId()
+  addTask(taskToAdd: Task, formCardID: number) {
+    let taskList: Task[] = this.getTaskList(taskToAdd.cardID)
+    taskToAdd.id = this.generateNewTaskId(taskToAdd.cardID)
+    taskToAdd.cardID = formCardID
     taskList.push(taskToAdd)
-    localStorage.setItem("TaskList", JSON.stringify(taskList))
+    localStorage.setItem(
+      "TaskList" + taskToAdd.cardID,
+      JSON.stringify(taskList)
+    )
     console.log(taskToAdd)
   }
 
   deleteTask(taskToDelete: Task) {
-    let taskList: Task[] = this.getTaskList()
+    let taskList: Task[] = this.getTaskList(taskToDelete.cardID)
     console.log(taskList)
     console.log(taskToDelete)
     for (let task of taskList) {
@@ -45,17 +47,23 @@ export class TaskService {
         taskList.splice(taskList.indexOf(task), 1)
       }
     }
-    localStorage.setItem("TaskList", JSON.stringify(taskList))
+    localStorage.setItem(
+      "TaskList" + taskToDelete.cardID,
+      JSON.stringify(taskList)
+    )
   }
 
   updateTask(taskToUpdate: Task) {
-    let taskList: Task[] = this.getTaskList()
+    let taskList: Task[] = this.getTaskList(taskToUpdate.cardID)
     for (let task of taskList) {
       if (task.id === taskToUpdate.id) {
         taskList.splice(taskList.indexOf(task), 1, taskToUpdate)
       }
     }
-    localStorage.setItem("TaskList", JSON.stringify(taskList))
+    localStorage.setItem(
+      "TaskList" + taskToUpdate.cardID,
+      JSON.stringify(taskList)
+    )
   }
 
   sortTaskList(listToSort: Task[]) {
@@ -104,5 +112,46 @@ export class TaskService {
       default:
         return 0
     }
+  }
+
+  getCardList() {
+    let cardList: string
+    let parsedCardList = []
+
+    cardList = JSON.stringify(localStorage)
+
+    console.log(cardList)
+
+    parsedCardList = JSON.parse(cardList)
+
+    console.log(cardList)
+    console.log(parsedCardList)
+
+    return parsedCardList
+  }
+
+  cardListTemplate() {
+    const template = ["Pommes", "Cassonade", "Citron", "Vanille", "Canelle"]
+    let taskList: Task[] = []
+    let task: Task = new Task()
+    for (let i = 0; i < 5; i++) {
+      task.id = i
+      task.content = template[i]
+      if (task.content === "Cassonade" || "Vanille") {
+        task.done = true
+      }
+      taskList.push(task)
+      task = new Task()
+    }
+    return taskList
+  }
+
+  generateCard(cardID: number) {
+    let newCard = new Card()
+    newCard.content = this.cardListTemplate()
+    if (localStorage.getItem("TaskList" + cardID)) {
+      return
+    }
+    localStorage.setItem("TaskList" + cardID, JSON.stringify(newCard))
   }
 }

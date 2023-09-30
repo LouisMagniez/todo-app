@@ -1,23 +1,29 @@
-import { Component } from "@angular/core"
+import { Component, Input, Output } from "@angular/core"
 import { Task } from "../task"
 import { TaskService } from "../task.service"
 
 @Component({
-  selector: "app-task-list",
-  templateUrl: "./task-list.component.html",
-  styleUrls: ["task-list.component.css"],
+  selector: "app-task-card",
+  templateUrl: "./task-card.component.html",
+  styleUrls: ["task-card.component.css"],
 })
-export class TaskListComponent {
+export class TaskCardComponent {
   constructor(private taskService: TaskService) {}
+
+  @Input() cardListID!: number
+
+  @Output() cardID: number = this.cardListID
 
   filterDoneStatus: string = "SEE_ALL"
 
-  taskList: Task[] = this.taskService.getTaskList()
+  taskList: Task[] = this.taskService.getTaskList(this.cardID)
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.taskService.generateCard(this.cardID)
+  }
 
   refreshTaskList() {
-    this.taskList = this.taskService.getTaskList()
+    this.taskList = this.taskService.getTaskList(this.cardID)
   }
 
   onChangeChipCheckUndefined() {
