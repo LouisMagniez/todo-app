@@ -114,22 +114,6 @@ export class TaskService {
     }
   }
 
-  getCardList() {
-    let cardList: string
-    let parsedCardList = []
-
-    cardList = JSON.stringify(localStorage)
-
-    console.log(cardList)
-
-    parsedCardList = JSON.parse(cardList)
-
-    console.log(cardList)
-    console.log(parsedCardList)
-
-    return parsedCardList
-  }
-
   cardListTemplate() {
     const template = ["Pommes", "Cassonade", "Citron", "Vanille", "Canelle"]
     let taskList: Task[] = []
@@ -146,12 +130,39 @@ export class TaskService {
     return taskList
   }
 
-  generateCard(cardID: number) {
-    let newCard = new Card()
-    newCard.content = this.cardListTemplate()
-    if (localStorage.getItem("TaskList" + cardID)) {
-      return
+  getCardList() {
+    let cardList = localStorage.getItem("CardList")
+    let parsedCardList: Card[] = []
+    if (cardList) {
+      for (let card of JSON.parse(cardList)) {
+        parsedCardList.unshift(card)
+      }
     }
-    localStorage.setItem("TaskList" + cardID, JSON.stringify(newCard))
+
+    return parsedCardList
+  }
+
+  initCard() {
+    if (localStorage.getItem("CardList")) return
+    else this.addCard()
+  }
+
+  addCard() {
+    let cardList: Card[] = this.getCardList()
+    let newCard = new Card()
+    newCard.id = this.generateNewCardId()
+    newCard.content = this.cardListTemplate()
+    cardList.push(newCard)
+    localStorage.setItem("CardList", JSON.stringify(cardList))
+    console.log(localStorage)
+  }
+
+  generateNewCardId() {
+    let newCardId = 1
+    let cardList = localStorage.getItem("CardList")
+    if (cardList) {
+      newCardId = Math.max(...this.getCardList().map((card) => card.id)) + 1
+    }
+    return newCardId
   }
 }

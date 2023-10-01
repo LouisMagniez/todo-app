@@ -1,5 +1,7 @@
 <div *ngFor="let card of cardList">
-  <app-task-card [cardListID]="card.id"></app-task-card>
+  <div>
+    <app-task-card [cardListID]="card.id"></app-task-card>
+  </div>
 </div>
 
 <button mat-flat-button color="primary" class="new-card-button">

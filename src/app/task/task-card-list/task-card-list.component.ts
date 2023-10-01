@@ -9,7 +9,9 @@ import { TaskService } from "../task.service"
 export class TaskCardListComponent {
   constructor(private taskService: TaskService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.taskService.initCard()
+  }
 
   cardList = this.taskService.getCardList()
 }

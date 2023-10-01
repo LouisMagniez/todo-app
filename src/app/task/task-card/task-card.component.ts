@@ -18,9 +18,7 @@ export class TaskCardComponent {
 
   taskList: Task[] = this.taskService.getTaskList(this.cardID)
 
-  ngOnInit() {
-    this.taskService.generateCard(this.cardID)
-  }
+  ngOnInit() {}
 
   refreshTaskList() {
     this.taskList = this.taskService.getTaskList(this.cardID)
