@@ -1,4 +1,4 @@
-import { Component, Input, Output } from "@angular/core"
+import { Component, EventEmitter, Input, Output } from "@angular/core"
 import { Task } from "../task"
 import { TaskService } from "../task.service"
 
@@ -12,7 +12,9 @@ export class TaskCardComponent {
 
   @Input() CardID!: number
 
-  filterDoneStatus: string = "SEE_ALL"
+  @Input() search: string = ""
+
+  @Input() filterDoneStatus: string = "SEE_ALL"
 
   taskList!: Task[]
 
@@ -23,14 +25,6 @@ export class TaskCardComponent {
   refreshTaskList() {
     console.log("in refresh")
     this.taskList = this.taskService.getTaskList(this.CardID)
-  }
-
-  onChangeChipCheckUndefined() {
-    if (this.filterDoneStatus === undefined) {
-      setTimeout(() => {
-        this.filterDoneStatus = "SEE_ALL"
-      }, 0)
-    }
   }
 
   onChangeDoneStatus(task: Task) {
@@ -55,15 +49,5 @@ export class TaskCardComponent {
 
   trackById(_index: number, task: Task) {
     return task.id
-  }
-  taskCounter(
-    searchFilter: string,
-    filterDoneStatus: string,
-    counterType: string
-  ) {
-    return this.taskService.manageTaskCounter(
-      counterType,
-      this.filterTaskList(searchFilter, filterDoneStatus)
-    )
   }
 }

@@ -1,24 +1,3 @@
-<div class="search-task">
-  <mat-form-field>
-    <input
-      matInput
-      placeholder="Search..."
-      (ngModelChange)="(search.value)"
-      #search
-    />
-  </mat-form-field>
-</div>
-<div class="chips">
-  <mat-chip-listbox
-    aria-label="chip-filter"
-    [(ngModel)]="filterDoneStatus"
-    (ngModelChange)="onChangeChipCheckUndefined()"
-  >
-    <mat-chip-option value="SEE_ALL" color="accent">See all</mat-chip-option>
-    <mat-chip-option value="TO_DO" color="accent">To do</mat-chip-option>
-    <mat-chip-option value="DONE" color="accent">Done</mat-chip-option>
-  </mat-chip-listbox>
-</div>
 <div class="align-center">
   <mat-card class="task-card">
     <mat-card-content>
@@ -29,7 +8,7 @@
 
       <mat-list-item
         *ngFor="
-          let task of filterTaskList(search.value, filterDoneStatus);
+          let task of filterTaskList(search, filterDoneStatus);
           trackBy: trackById;
           last as last
         "
@@ -78,14 +57,5 @@
         </div>
       </mat-list-item>
     </mat-card-content>
-    <mat-card-footer class="task-counter">
-      <div>{{ taskCounter(search.value, filterDoneStatus, "TO_DO") }} Todo</div>
-      <mat-divider [vertical]="true"></mat-divider>
-      <div>{{ taskCounter(search.value, filterDoneStatus, "DONE") }} Done</div>
-      <mat-divider [vertical]="true"></mat-divider>
-      <div class="counter-total">
-        Total : {{ taskCounter(search.value, filterDoneStatus, "ALL") }}
-      </div>
-    </mat-card-footer>
   </mat-card>
 </div>

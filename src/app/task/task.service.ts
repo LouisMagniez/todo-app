@@ -110,7 +110,6 @@ export class TaskService {
     for (let i = 0; i < 5; i++) {
       task.id = i
       task.content = template[i]
-      task.done = false
       if (i === 1 || i === 3) {
         task.done = true
       }
@@ -148,7 +147,6 @@ export class TaskService {
     newCard.content = this.cardListTemplate()
     cardList.push(newCard)
     localStorage.setItem("CardList", JSON.stringify(cardList))
-    console.log(localStorage)
   }
 
   generateNewCardId() {

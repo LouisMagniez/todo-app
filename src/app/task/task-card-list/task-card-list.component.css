@@ -1,0 +1,27 @@
+.search-task {
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+}
+
+.chips {
+  display: flex;
+  justify-content: center;
+}
+
+.card-list {
+  display: flex;
+  justify-content: center;
+  margin-left: 128px;
+  margin-right: 128px;
+}
+
+.card {
+  margin: 32px;
+}
+
+.new-card {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}

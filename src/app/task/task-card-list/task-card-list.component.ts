@@ -11,11 +11,25 @@ export class TaskCardListComponent {
 
   cardList = this.taskService.getCardList()
 
+  filterDoneStatus: string = "SEE_ALL"
+
   ngOnInit() {
     this.taskService.initCard()
   }
 
   generateNewCard() {
     this.taskService.addCard()
+  }
+
+  onChangeChipCheckUndefined() {
+    if (this.filterDoneStatus === undefined) {
+      setTimeout(() => {
+        this.filterDoneStatus = "SEE_ALL"
+      }, 0)
+    }
+  }
+
+  refreshCardList() {
+    this.cardList = this.taskService.getCardList()
   }
 }

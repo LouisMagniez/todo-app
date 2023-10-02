@@ -30,17 +30,6 @@
   word-break: break-all;
 }
 
-.chips {
-  display: flex;
-  justify-content: center;
-}
-
-.search-task {
-  display: flex;
-  justify-content: center;
-  margin-top: 3em;
-}
-
 .divider {
   margin: 8px;
 }
