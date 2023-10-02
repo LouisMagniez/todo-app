@@ -5,65 +5,54 @@ import { Card } from "./card"
 @Injectable()
 export class TaskService {
   getTaskList(cardID: number): Task[] {
-    let localTASKS = localStorage.getItem("TaskList" + cardID)
-    let parsedTaskList: Task[] = []
-    if (localTASKS) {
-      for (let task of JSON.parse(localTASKS)) {
-        parsedTaskList.unshift(task)
+    let currentCard = this.getCard(cardID)
+    let taskList: Task[] = []
+    if (currentCard) {
+      let Card: Card = currentCard
+      for (let task of Card.content) {
+        taskList.unshift(task)
       }
     }
-    this.sortTaskList(parsedTaskList)
-    return parsedTaskList
+    console.log("getTaskList : ", taskList)
+    console.log("getTaskList : ", cardID)
+    this.sortTaskList(taskList)
+    return taskList
   }
 
   generateNewTaskId(cardID: number): number {
-    let newTaskId = 1
-    let localTASKS = localStorage.getItem("TaskList" + cardID)
-    if (localTASKS) {
-      newTaskId =
-        Math.max(...this.getTaskList(cardID).map((task) => task.id)) + 1
-    }
+    let newTaskId =
+      Math.max(...this.getTaskList(cardID).map((task) => task.id)) + 1
     return newTaskId
   }
 
   addTask(taskToAdd: Task, formCardID: number) {
-    let taskList: Task[] = this.getTaskList(taskToAdd.cardID)
-    taskToAdd.id = this.generateNewTaskId(taskToAdd.cardID)
-    taskToAdd.cardID = formCardID
+    let taskList: Task[] = this.getTaskList(formCardID)
+    taskToAdd.id = this.generateNewTaskId(formCardID)
     taskList.push(taskToAdd)
-    localStorage.setItem(
-      "TaskList" + taskToAdd.cardID,
-      JSON.stringify(taskList)
-    )
-    console.log(taskToAdd)
+    this.setTaskList(taskList, formCardID)
+    console.log("addTask : ", taskToAdd)
   }
 
-  deleteTask(taskToDelete: Task) {
-    let taskList: Task[] = this.getTaskList(taskToDelete.cardID)
-    console.log(taskList)
-    console.log(taskToDelete)
+  deleteTask(taskToDelete: Task, cardID: number) {
+    let taskList: Task[] = this.getTaskList(cardID)
+    console.log("delete task :", taskList)
+    console.log("delete task :", taskToDelete)
     for (let task of taskList) {
       if (task.id === taskToDelete.id) {
         taskList.splice(taskList.indexOf(task), 1)
       }
     }
-    localStorage.setItem(
-      "TaskList" + taskToDelete.cardID,
-      JSON.stringify(taskList)
-    )
+    this.setTaskList(taskList, cardID)
   }
 
-  updateTask(taskToUpdate: Task) {
-    let taskList: Task[] = this.getTaskList(taskToUpdate.cardID)
+  updateTask(taskToUpdate: Task, cardID: number) {
+    let taskList: Task[] = this.getTaskList(cardID)
     for (let task of taskList) {
       if (task.id === taskToUpdate.id) {
         taskList.splice(taskList.indexOf(task), 1, taskToUpdate)
       }
     }
-    localStorage.setItem(
-      "TaskList" + taskToUpdate.cardID,
-      JSON.stringify(taskList)
-    )
+    this.setTaskList(taskList, cardID)
   }
 
   sortTaskList(listToSort: Task[]) {
@@ -121,13 +110,18 @@ export class TaskService {
     for (let i = 0; i < 5; i++) {
       task.id = i
       task.content = template[i]
-      if (task.content === "Cassonade" || "Vanille") {
+      task.done = false
+      if (i === 1 || i === 3) {
         task.done = true
       }
       taskList.push(task)
       task = new Task()
     }
     return taskList
+  }
+
+  getCard(cardID: number) {
+    return this.getCardList().find((card) => card.id === cardID)
   }
 
   getCardList() {
@@ -164,5 +158,20 @@ export class TaskService {
       newCardId = Math.max(...this.getCardList().map((card) => card.id)) + 1
     }
     return newCardId
+  }
+
+  setTaskList(taskList: Task[], cardID: number) {
+    let cardList: Card[] = this.getCardList()
+    let currentCard = this.getCard(cardID)
+    if (currentCard) {
+      currentCard.content = taskList
+      for (let card of cardList) {
+        if (card.id === currentCard.id) {
+          cardList.splice(cardList.indexOf(card), 1, currentCard)
+        }
+      }
+      localStorage.setItem("CardList", JSON.stringify(cardList))
+      console.log("in setTaskList : ", localStorage)
+    }
   }
 }

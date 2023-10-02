@@ -10,18 +10,19 @@ import { TaskService } from "../task.service"
 export class TaskCardComponent {
   constructor(private taskService: TaskService) {}
 
-  @Input() cardListID!: number
-
-  @Output() cardID: number = this.cardListID
+  @Input() CardID!: number
 
   filterDoneStatus: string = "SEE_ALL"
 
-  taskList: Task[] = this.taskService.getTaskList(this.cardID)
+  taskList!: Task[]
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.taskList = this.taskService.getTaskList(this.CardID)
+  }
 
   refreshTaskList() {
-    this.taskList = this.taskService.getTaskList(this.cardID)
+    console.log("in refresh")
+    this.taskList = this.taskService.getTaskList(this.CardID)
   }
 
   onChangeChipCheckUndefined() {
@@ -33,7 +34,7 @@ export class TaskCardComponent {
   }
 
   onChangeDoneStatus(task: Task) {
-    this.taskService.updateTask(task)
+    this.taskService.updateTask(task, this.CardID)
   }
 
   filterTaskList(searchFilter: string, filterDoneStatus: string) {
@@ -49,7 +50,7 @@ export class TaskCardComponent {
   }
 
   onClickDelete(task: Task) {
-    this.taskService.deleteTask(task)
+    this.taskService.deleteTask(task, this.CardID)
   }
 
   trackById(_index: number, task: Task) {

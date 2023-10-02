@@ -1,6 +1,5 @@
 export class Task {
   id!: number
-  cardID!: number
   content: string
   done: boolean
   edit: boolean

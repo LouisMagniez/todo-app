@@ -10,6 +10,7 @@ export class TaskCardListComponent {
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {
+    localStorage.clear()
     this.taskService.initCard()
   }
 

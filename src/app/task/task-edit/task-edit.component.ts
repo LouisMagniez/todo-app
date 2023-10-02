@@ -10,10 +10,12 @@ import { TaskService } from "../task.service"
 export class TaskEditComponent {
   @Input() taskToEdit!: Task
 
+  @Input() editCardID!: number
+
   constructor(private taskService: TaskService) {}
 
   onSubmit() {
     this.taskToEdit.edit = false
-    this.taskService.updateTask(this.taskToEdit)
+    this.taskService.updateTask(this.taskToEdit, this.editCardID)
   }
 }
