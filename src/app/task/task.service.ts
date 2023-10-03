@@ -140,14 +140,13 @@ export class TaskService {
 
   initCard() {
     if (localStorage.getItem("CardList")) return
-    else this.addCard()
+    else this.cardTemplate()
   }
 
   addCard() {
     let cardList: Card[] = this.getCardList()
     let newCard = new Card()
     newCard.id = this.generateNewCardId()
-    newCard.content = this.cardListTemplate()
     newCard.title = this.generateCardTitle()
     cardList.push(newCard)
     localStorage.setItem("CardList", JSON.stringify(cardList))
@@ -176,10 +175,12 @@ export class TaskService {
     }
   }
 
-  cardListTemplate() {
+  cardTemplate() {
     const template = ["Pommes", "Cassonade", "Citron", "Vanille", "Canelle"]
     let taskList: Task[] = []
     let task: Task = new Task()
+    let newCard = new Card()
+    let cardList: Card[] = this.getCardList()
     for (let i = 0; i < 5; i++) {
       task.id = i
       task.content = template[i]
@@ -189,19 +190,15 @@ export class TaskService {
       taskList.push(task)
       task = new Task()
     }
-    return taskList
+    newCard.content = taskList
+    newCard.id = this.generateNewCardId()
+    newCard.title = "Liste de courses"
+    cardList.push(newCard)
+    localStorage.setItem("CardList", JSON.stringify(cardList))
   }
 
   generateCardTitle() {
-    let newCardTitle = "Liste de courses"
-    let countCards = 0
-    let cardList = localStorage.getItem("CardList")
-    if (cardList) {
-      countCards = Math.max(...this.getCardList().map((card) => card.id)) + 1
-      if (countCards !== 1) {
-        newCardTitle = "Liste de courses " + countCards
-      }
-    }
+    let newCardTitle = "New todo list"
     return newCardTitle
   }
 
