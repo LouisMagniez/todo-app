@@ -1,0 +1,40 @@
+<form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+  <div class="edit-form">
+    <mat-form-field class="form-group">
+      <input
+        matInput
+        #titleEditInput
+        cdkTrapFocus
+        [cdkTrapFocusAutoCapture]="true"
+        maxlength="100"
+        type="text"
+        id="editContent"
+        [(ngModel)]="titleToEdit"
+        name="editContent"
+        #editContent="ngModel"
+      />
+      <button
+        *ngIf="titleToEdit"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        type="button"
+        (click)="titleToEdit = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-hint align="end">{{ titleEditInput.value.length }}/200</mat-hint>
+    </mat-form-field>
+    <div class="button">
+      <button
+        mat-icon-button
+        color="primary"
+        type="submit"
+        class="edit-button"
+        [disabled]="!titleEditInput.value"
+      >
+        <mat-icon>check</mat-icon>
+      </button>
+    </div>
+  </div>
+</form>

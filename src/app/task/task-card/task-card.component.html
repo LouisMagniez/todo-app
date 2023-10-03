@@ -2,7 +2,32 @@
   <mat-card class="task-card">
     <mat-card-content>
       <mat-card-header class="title">
-        {{ CardTitle }}
+        <div
+          class="title edit"
+          [hidden]="titleEdit"
+          (click)="onClickEditTitle()"
+          (mouseover)="editTitleIcon = true"
+          (mouseout)="editTitleIcon = false"
+        >
+          <div [hidden]="titleEdit">{{ CardTitle }}</div>
+
+          <button
+            class="title-button"
+            [hidden]="!editTitleIcon"
+            mat-icon-button
+            matTooltip="Edit title"
+            aria-label="Button to edit the title"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+
+        <div [hidden]="!titleEdit">
+          <app-title-edit
+            (editTitleEvent)="onEventEditTitle($event)"
+            [titleToEdit]="CardTitle"
+          ></app-title-edit>
+        </div>
       </mat-card-header>
       <app-task-form
         (refreshTaskListEvent)="refreshTaskList()"
@@ -34,7 +59,7 @@
               mat-icon-button
               matTooltip="Edit"
               aria-label="Button to edit a task"
-              (click)="onClickEdit(task)"
+              (click)="onClickEditTask(task)"
             >
               <mat-icon>edit</mat-icon>
             </button>

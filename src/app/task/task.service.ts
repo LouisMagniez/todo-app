@@ -173,7 +173,6 @@ export class TaskService {
         }
       }
       localStorage.setItem("CardList", JSON.stringify(cardList))
-      console.log("in setTaskList : ", localStorage)
     }
   }
 
@@ -204,5 +203,23 @@ export class TaskService {
       }
     }
     return newCardTitle
+  }
+
+  editTitle(editedTitle: string, cardID: number) {
+    let currentCard = this.getCard(cardID)
+    if (currentCard) {
+      currentCard.title = editedTitle
+      this.updateCard(currentCard)
+    }
+  }
+
+  updateCard(cardToUpdate: Card) {
+    let cardList: Card[] = this.getCardList()
+    for (let card of cardList) {
+      if (card.id === cardToUpdate.id) {
+        cardList.splice(cardList.indexOf(card), 1, cardToUpdate)
+      }
+    }
+    localStorage.setItem("CardList", JSON.stringify(cardList))
   }
 }

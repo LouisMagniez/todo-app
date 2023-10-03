@@ -25,7 +25,8 @@ import {
   provideAnimations,
 } from "@angular/platform-browser/animations"
 import { TaskEditComponent } from "./task-edit/task-edit.component"
-import { TaskCardListComponent } from "./task-card-list/task-card-list.component"
+import { TaskCardListComponent } from "./task-card-list/task-card-list.component";
+import { TitleEditComponent } from './title-edit/title-edit.component'
 
 const taskRoutes: Routes = [{ path: "tasks", component: TaskCardListComponent }]
 
@@ -35,6 +36,7 @@ const taskRoutes: Routes = [{ path: "tasks", component: TaskCardListComponent }]
     TaskCardComponent,
     TaskEditComponent,
     TaskCardListComponent,
+    TitleEditComponent,
   ],
 
   imports: [

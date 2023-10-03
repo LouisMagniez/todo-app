@@ -47,6 +47,7 @@
       [CardTitle]="card.title"
       [search]="search.value"
       [filterDoneStatus]="filterDoneStatus"
+      (refreshEvent)="refreshCardList()"
     ></app-task-card>
   </div>
 </div>

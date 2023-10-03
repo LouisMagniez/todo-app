@@ -18,7 +18,13 @@ export class TaskCardComponent {
 
   @Input() filterDoneStatus: string = "SEE_ALL"
 
+  @Output() refreshEvent = new EventEmitter()
+
   taskList!: Task[]
+
+  titleEdit: boolean = false
+
+  editTitleIcon: boolean = false
 
   ngOnInit() {
     this.taskList = this.taskService.getTaskList(this.CardID)
@@ -41,8 +47,12 @@ export class TaskCardComponent {
     return this.taskService.statusFilter(searchedTaskList, filterDoneStatus)
   }
 
-  onClickEdit(task: Task) {
+  onClickEditTask(task: Task) {
     task.edit = true
+  }
+
+  onClickEditTitle() {
+    this.titleEdit = true
   }
 
   onClickDelete(task: Task) {
@@ -51,5 +61,11 @@ export class TaskCardComponent {
 
   trackById(_index: number, task: Task) {
     return task.id
+  }
+
+  onEventEditTitle(editValue: string) {
+    this.titleEdit = false
+    this.taskService.editTitle(editValue, this.CardID)
+    this.refreshEvent.emit()
   }
 }
