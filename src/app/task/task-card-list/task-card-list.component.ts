@@ -1,5 +1,6 @@
 import { Component } from "@angular/core"
 import { TaskService } from "../task.service"
+import { Task } from "../task"
 
 @Component({
   selector: "app-task-card-list",
@@ -31,5 +32,9 @@ export class TaskCardListComponent {
 
   refreshCardList() {
     this.cardList = this.taskService.getCardList()
+  }
+
+  taskCounter(searchValue: string, counterType: string) {
+    return this.taskService.todoListCounter(searchValue, counterType)
   }
 }

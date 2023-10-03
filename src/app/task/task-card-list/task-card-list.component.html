@@ -20,13 +20,12 @@
     <mat-chip-option value="DONE" color="accent">Done</mat-chip-option>
   </mat-chip-listbox>
 </div>
-<div class="card-list">
-  <div *ngFor="let card of cardList" class="card">
-    <app-task-card
-      [CardID]="card.id"
-      [search]="search.value"
-      [filterDoneStatus]="filterDoneStatus"
-    ></app-task-card>
+
+<div class="task-counter">
+  <div class="counter">{{ taskCounter(search.value, "TO_DO") }} Todo</div>
+  <div class="counter">{{ taskCounter(search.value, "DONE") }} Done</div>
+  <div class="counter-total">
+    Total : {{ taskCounter(search.value, "ALL") }}
   </div>
 </div>
 
@@ -41,14 +40,12 @@
   </button>
 </div>
 
-<!--
-  <mat-card-footer class="task-counter">
-  <div>{{ taskCounter(search.value, filterDoneStatus, "TO_DO") }} Todo</div>
-  <mat-divider [vertical]="true"></mat-divider>
-  <div>{{ taskCounter(search.value, filterDoneStatus, "DONE") }} Done</div>
-  <mat-divider [vertical]="true"></mat-divider>
-  <div class="counter-total">
-    Total : {{ taskCounter(search.value, filterDoneStatus, "ALL") }}
+<div class="card-list">
+  <div *ngFor="let card of cardList" class="card">
+    <app-task-card
+      [CardID]="card.id"
+      [search]="search.value"
+      [filterDoneStatus]="filterDoneStatus"
+    ></app-task-card>
   </div>
-</mat-card-footer>
--->
+</div>

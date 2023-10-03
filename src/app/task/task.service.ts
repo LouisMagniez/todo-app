@@ -13,8 +13,6 @@ export class TaskService {
         taskList.unshift(task)
       }
     }
-    console.log("getTaskList : ", taskList)
-    console.log("getTaskList : ", cardID)
     this.sortTaskList(taskList)
     return taskList
   }
@@ -30,13 +28,10 @@ export class TaskService {
     taskToAdd.id = this.generateNewTaskId(formCardID)
     taskList.push(taskToAdd)
     this.setTaskList(taskList, formCardID)
-    console.log("addTask : ", taskToAdd)
   }
 
   deleteTask(taskToDelete: Task, cardID: number) {
     let taskList: Task[] = this.getTaskList(cardID)
-    console.log("delete task :", taskList)
-    console.log("delete task :", taskToDelete)
     for (let task of taskList) {
       if (task.id === taskToDelete.id) {
         taskList.splice(taskList.indexOf(task), 1)
@@ -71,8 +66,43 @@ export class TaskService {
     return searchedTaskList
   }
 
-  statusFilter(searchedTaskList: Task[], filterDoneStatus: string) {
-    switch (filterDoneStatus) {
+  todoListCounter(searchFilter: string, counterType: string) {
+    let cardList = this.getCardList()
+    let count: number = 0
+    for (let card of cardList) {
+      count += this.counterSwitch(counterType, card.content, searchFilter)
+    }
+    return count
+  }
+
+  counterSwitch(
+    counterType: string,
+    cardContent: Task[],
+    searchFilter: string
+  ) {
+    let filteredCardContent: Task[] = []
+    switch (counterType) {
+      case "ALL":
+        filteredCardContent = this.searchFilter(cardContent, searchFilter)
+        return filteredCardContent.length
+
+      case "TO_DO":
+        filteredCardContent = this.searchFilter(cardContent, searchFilter)
+        filteredCardContent = this.statusFilter(filteredCardContent, "TO_DO")
+        return filteredCardContent.length
+
+      case "DONE":
+        filteredCardContent = this.searchFilter(cardContent, searchFilter)
+        filteredCardContent = this.statusFilter(filteredCardContent, "DONE")
+        return filteredCardContent.length
+
+      default:
+        return 0
+    }
+  }
+
+  statusFilter(searchedTaskList: Task[], filterDone: string) {
+    switch (filterDone) {
       case "SEE_ALL":
         return searchedTaskList
 
@@ -84,22 +114,6 @@ export class TaskService {
 
       default:
         return searchedTaskList
-    }
-  }
-
-  manageTaskCounter(counterType: string, taskListToCount: Task[]) {
-    switch (counterType) {
-      case "ALL":
-        return taskListToCount.length
-
-      case "TO_DO":
-        return this.statusFilter(taskListToCount, "TO_DO").length
-
-      case "DONE":
-        return this.statusFilter(taskListToCount, "DONE").length
-
-      default:
-        return 0
     }
   }
 
