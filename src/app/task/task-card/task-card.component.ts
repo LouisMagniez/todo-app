@@ -12,6 +12,8 @@ export class TaskCardComponent {
 
   @Input() CardID!: number
 
+  @Input() CardTitle: string = "No title"
+
   @Input() search: string = ""
 
   @Input() filterDoneStatus: string = "SEE_ALL"

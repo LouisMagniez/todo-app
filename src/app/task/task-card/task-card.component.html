@@ -1,6 +1,9 @@
 <div class="align-center">
   <mat-card class="task-card">
     <mat-card-content>
+      <mat-card-header class="title">
+        {{ CardTitle }}
+      </mat-card-header>
       <app-task-form
         (refreshTaskListEvent)="refreshTaskList()"
         [formCardID]="this.CardID"

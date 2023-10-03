@@ -117,22 +117,6 @@ export class TaskService {
     }
   }
 
-  cardListTemplate() {
-    const template = ["Pommes", "Cassonade", "Citron", "Vanille", "Canelle"]
-    let taskList: Task[] = []
-    let task: Task = new Task()
-    for (let i = 0; i < 5; i++) {
-      task.id = i
-      task.content = template[i]
-      if (i === 1 || i === 3) {
-        task.done = true
-      }
-      taskList.push(task)
-      task = new Task()
-    }
-    return taskList
-  }
-
   getCard(cardID: number) {
     return this.getCardList().find((card) => card.id === cardID)
   }
@@ -142,11 +126,16 @@ export class TaskService {
     let parsedCardList: Card[] = []
     if (cardList) {
       for (let card of JSON.parse(cardList)) {
-        parsedCardList.unshift(card)
+        parsedCardList.push(card)
       }
     }
-
+    this.sortCardList(parsedCardList)
     return parsedCardList
+  }
+
+  sortCardList(listToSort: Card[]) {
+    listToSort.sort((a, b) => a.id - b.id)
+    return listToSort
   }
 
   initCard() {
@@ -159,6 +148,7 @@ export class TaskService {
     let newCard = new Card()
     newCard.id = this.generateNewCardId()
     newCard.content = this.cardListTemplate()
+    newCard.title = this.generateCardTitle()
     cardList.push(newCard)
     localStorage.setItem("CardList", JSON.stringify(cardList))
   }
@@ -185,5 +175,34 @@ export class TaskService {
       localStorage.setItem("CardList", JSON.stringify(cardList))
       console.log("in setTaskList : ", localStorage)
     }
+  }
+
+  cardListTemplate() {
+    const template = ["Pommes", "Cassonade", "Citron", "Vanille", "Canelle"]
+    let taskList: Task[] = []
+    let task: Task = new Task()
+    for (let i = 0; i < 5; i++) {
+      task.id = i
+      task.content = template[i]
+      if (i === 1 || i === 3) {
+        task.done = true
+      }
+      taskList.push(task)
+      task = new Task()
+    }
+    return taskList
+  }
+
+  generateCardTitle() {
+    let newCardTitle = "Liste de courses"
+    let countCards = 0
+    let cardList = localStorage.getItem("CardList")
+    if (cardList) {
+      countCards = Math.max(...this.getCardList().map((card) => card.id)) + 1
+      if (countCards !== 1) {
+        newCardTitle = "Liste de courses " + countCards
+      }
+    }
+    return newCardTitle
   }
 }

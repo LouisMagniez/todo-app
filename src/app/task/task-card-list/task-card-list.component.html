@@ -44,6 +44,7 @@
   <div *ngFor="let card of cardList" class="card">
     <app-task-card
       [CardID]="card.id"
+      [CardTitle]="card.title"
       [search]="search.value"
       [filterDoneStatus]="filterDoneStatus"
     ></app-task-card>

@@ -34,12 +34,10 @@
   margin: 8px;
 }
 
-.task-counter {
+.title {
   display: flex;
-  justify-content: space-evenly;
-  margin-left: 50%;
-}
-
-.counter-total {
-  font-weight: bold;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 32px;
+  font-weight: 500;
 }
