@@ -53,8 +53,18 @@
               class="task-list"
               [ngClass]="{ 'task-done': task.done }"
             >
-              {{ task.content }}
+              <div *ngIf="task.description === ''">{{ task.content }}</div>
+
+              <div *ngIf="task.description !== ''">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    {{ task.content }}
+                  </mat-expansion-panel-header>
+                  {{ task.description }}
+                </mat-expansion-panel>
+              </div>
             </span>
+
             <button
               mat-icon-button
               matTooltip="Edit"

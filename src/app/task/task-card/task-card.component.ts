@@ -31,7 +31,6 @@ export class TaskCardComponent {
   }
 
   refreshTaskList() {
-    console.log("in refresh")
     this.taskList = this.taskService.getTaskList(this.CardID)
   }
 

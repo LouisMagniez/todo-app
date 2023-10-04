@@ -2,7 +2,7 @@
   <div class="align-center">
     <div class="form-input">
       <div class="add-task-content">
-        <mat-form-field class="form-group" class="new-task">
+        <mat-form-field class="form-group">
           <mat-label for="title">Add a new task</mat-label>
           <input
             matInput
@@ -24,6 +24,15 @@
             <mat-icon (click)="expandForm()"> expand_less </mat-icon>
           </div>
         </div>
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          class="create-button"
+          [disabled]="!contentInput.value"
+        >
+          Create
+        </button>
       </div>
 
       <div class="add-task-description">
@@ -44,15 +53,5 @@
         </div>
       </div>
     </div>
-
-    <button
-      mat-flat-button
-      color="primary"
-      type="submit"
-      class="create-button"
-      [disabled]="!contentInput.value"
-    >
-      Create
-    </button>
   </div>
 </form>
