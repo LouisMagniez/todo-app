@@ -25,8 +25,10 @@ import {
   provideAnimations,
 } from "@angular/platform-browser/animations"
 import { TaskEditComponent } from "./task-edit/task-edit.component"
-import { TaskCardListComponent } from "./task-card-list/task-card-list.component";
-import { TitleEditComponent } from './title-edit/title-edit.component'
+import { TaskCardListComponent } from "./task-card-list/task-card-list.component"
+import { TitleEditComponent } from "./title-edit/title-edit.component"
+import { MatCommonModule } from "@angular/material/core"
+import { MatExpansionModule } from "@angular/material/expansion"
 
 const taskRoutes: Routes = [{ path: "tasks", component: TaskCardListComponent }]
 
@@ -41,6 +43,8 @@ const taskRoutes: Routes = [{ path: "tasks", component: TaskCardListComponent }]
 
   imports: [
     CommonModule,
+    MatExpansionModule,
+    MatCommonModule,
     A11yModule,
     FormsModule,
     MatButtonModule,
