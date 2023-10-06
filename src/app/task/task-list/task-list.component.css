@@ -23,13 +23,6 @@
   text-decoration: line-through;
 }
 
-.task {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  word-break: break-all;
-}
-
 .chips {
   display: flex;
   justify-content: center;
@@ -41,14 +34,50 @@
   margin-top: 3em;
 }
 
+.search-input {
+  width: 256px;
+}
+
+.search {
+  display: flex;
+}
+
 .divider {
   margin: 8px;
+}
+
+.task-body {
+  display: flex;
+  width: 75%;
+  word-break: break-all;
+  margin-top: 4px;
+}
+
+.button-container {
+  display: flex;
+}
+
+.buttons {
+  display: flex;
+}
+
+.task {
+  display: flex;
+  min-height: 72px;
 }
 
 .task-counter {
   display: flex;
   justify-content: space-evenly;
-  margin-left: 50%;
+  margin: -12px 12px 8px 296px;
+  color: #6b6b6b;
+}
+
+.counter-todo-done {
+  display: flex;
+  justify-content: space-evenly;
+  margin-right: 12px;
+  width: 124px;
 }
 
 .counter-total {
