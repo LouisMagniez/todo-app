@@ -33,7 +33,6 @@ export class TaskCardComponent {
   refreshTaskList() {
     this.taskList = this.taskService.getTaskList(this.CardID)
   }
-
   onChangeDoneStatus(task: Task) {
     this.taskService.updateTask(task, this.CardID)
   }
@@ -54,8 +53,14 @@ export class TaskCardComponent {
     this.titleEdit = true
   }
 
-  onClickDelete(task: Task) {
+  onClickDeleteTask(task: Task) {
     this.taskService.deleteTask(task, this.CardID)
+    this.refreshTaskList()
+  }
+
+  onClickDeleteCard() {
+    this.taskService.deleteCard(this.CardID)
+    this.refreshEvent.emit()
   }
 
   trackById(_index: number, task: Task) {

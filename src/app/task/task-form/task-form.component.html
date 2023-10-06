@@ -2,7 +2,7 @@
   <div class="align-center">
     <div class="form-input">
       <div class="add-task-content">
-        <mat-form-field class="form-group">
+        <mat-form-field class="form-group" appearance="outline">
           <mat-label for="title">Add a new task</mat-label>
           <input
             matInput
@@ -37,7 +37,7 @@
 
       <div class="add-task-description">
         <div [hidden]="!expandToggle">
-          <mat-form-field class="form-group">
+          <mat-form-field class="form-group" appearance="outline">
             <mat-label for="description">Task description</mat-label>
             <input
               matInput

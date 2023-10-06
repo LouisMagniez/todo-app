@@ -139,8 +139,11 @@ export class TaskService {
   }
 
   initCard() {
-    if (localStorage.getItem("CardList")) return
-    else this.cardTemplate()
+    if (localStorage.getItem("CardList")) {
+      return
+    } else {
+      this.generateDefaultCard()
+    }
   }
 
   addCard() {
@@ -149,6 +152,20 @@ export class TaskService {
     newCard.id = this.generateNewCardId()
     newCard.title = this.generateCardTitle()
     cardList.push(newCard)
+    this.setCardList(cardList)
+  }
+
+  deleteCard(cardToDelete: number) {
+    let cardList: Card[] = this.getCardList()
+    for (let card of cardList) {
+      if (card.id === cardToDelete) {
+        cardList.splice(cardList.indexOf(card), 1)
+      }
+    }
+    this.setCardList(cardList)
+  }
+
+  setCardList(cardList: Card[]) {
     localStorage.setItem("CardList", JSON.stringify(cardList))
   }
 
@@ -171,11 +188,11 @@ export class TaskService {
           cardList.splice(cardList.indexOf(card), 1, currentCard)
         }
       }
-      localStorage.setItem("CardList", JSON.stringify(cardList))
+      this.setCardList(cardList)
     }
   }
 
-  cardTemplate() {
+  generateDefaultCard() {
     const template = ["Pommes", "Cassonade", "Citron", "Vanille", "Canelle"]
     let taskList: Task[] = []
     let task: Task = new Task()
@@ -194,7 +211,7 @@ export class TaskService {
     newCard.id = this.generateNewCardId()
     newCard.title = "Liste de courses"
     cardList.push(newCard)
-    localStorage.setItem("CardList", JSON.stringify(cardList))
+    this.setCardList(cardList)
   }
 
   generateCardTitle() {
@@ -217,6 +234,6 @@ export class TaskService {
         cardList.splice(cardList.indexOf(card), 1, cardToUpdate)
       }
     }
-    localStorage.setItem("CardList", JSON.stringify(cardList))
+    this.setCardList(cardList)
   }
 }

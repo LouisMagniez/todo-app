@@ -1,25 +1,28 @@
 <div class="align-center">
   <mat-card class="task-card">
     <mat-card-content>
-      <mat-card-header class="title">
-        <div>
-          <div
-            [hidden]="titleEdit"
-            (click)="onClickEditTitle()"
-            (mouseover)="editTitleIcon = true"
-            (mouseout)="editTitleIcon = false"
-          >
-            <div [hidden]="titleEdit">{{ CardTitle }}</div>
-          </div>
+      <div class="card-head">
+        <mat-card-header class="title">
+          <div>
+            <div
+              [hidden]="titleEdit"
+              (click)="onClickEditTitle()"
+              (mouseover)="editTitleIcon = true"
+              (mouseout)="editTitleIcon = false"
+            >
+              <div [hidden]="titleEdit">{{ CardTitle }}</div>
+            </div>
 
-          <div [hidden]="!titleEdit">
-            <app-title-edit
-              (editTitleEvent)="onEventEditTitle($event)"
-              [titleToEdit]="CardTitle"
-            ></app-title-edit>
+            <div [hidden]="!titleEdit">
+              <app-title-edit
+                (editTitleEvent)="onEventEditTitle($event)"
+                [titleToEdit]="CardTitle"
+              ></app-title-edit>
+            </div>
           </div>
-        </div>
-      </mat-card-header>
+        </mat-card-header>
+      </div>
+
       <app-task-form
         (refreshTaskListEvent)="refreshTaskList()"
         [formCardID]="this.CardID"
@@ -82,7 +85,7 @@
               mat-icon-button
               matTooltip="Delete"
               aria-label="Button to delete a task"
-              (click)="onClickDelete(task); refreshTaskList()"
+              (click)="onClickDeleteTask(task)"
             >
               <mat-icon>delete</mat-icon>
             </button>
@@ -93,5 +96,17 @@
         </div>
       </mat-list-item>
     </mat-card-content>
+    <mat-card-footer>
+      <div class="delete-card">
+        <button
+          mat-icon-button
+          matTooltip="Delete card"
+          aria-label="Button to delete a card"
+          (click)="onClickDeleteCard()"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div></mat-card-footer
+    >
   </mat-card>
 </div>

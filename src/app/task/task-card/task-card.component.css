@@ -66,3 +66,14 @@
 .edit {
   margin-top: 20px;
 }
+
+.delete-card {
+  display: flex;
+  justify-content: right;
+}
+
+.card-head {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
