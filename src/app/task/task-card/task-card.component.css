@@ -23,15 +23,31 @@
   text-decoration: line-through;
 }
 
+.divider {
+  margin: 8px;
+}
+
+.task-body {
+  display: flex;
+  width: 75%;
+  word-break: break-all;
+  margin-top: 4px;
+}
+
+.button-container {
+  display: flex;
+}
+
+.buttons {
+  display: flex;
+}
+
 .task {
   display: flex;
+  min-height: 72px;
   align-items: center;
   flex-wrap: wrap;
   word-break: break-all;
-}
-
-.divider {
-  margin: 8px;
 }
 
 .title {

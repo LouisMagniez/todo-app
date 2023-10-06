@@ -1,7 +1,29 @@
 .edit-form {
   display: flex;
+
+  word-wrap: break-word;
+  word-break: break-all;
 }
+
+.form-group {
+  display: flex;
+  width: 354px;
+}
+
 .button {
   display: flex;
-  margin: 2%;
+  justify-content: flex-end;
+  margin-left: 8px;
+}
+
+.input-field {
+  display: flex;
+}
+
+.edit-input {
+  font-size: large;
+}
+
+input {
+  transform: translateY(-8%) translateX(-2%);
 }
