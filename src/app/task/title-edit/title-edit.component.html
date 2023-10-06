@@ -5,15 +5,15 @@
         <input
           class="input"
           matInput
-          #titleEditInput
+          #editTitleInput
           cdkTrapFocus
           [cdkTrapFocusAutoCapture]="true"
           maxlength="100"
           type="text"
-          id="editContent"
+          id="editTitle"
           [(ngModel)]="titleToEdit"
-          name="editContent"
-          #editContent="ngModel"
+          name="editTitle"
+          #editTitle="ngModel"
         />
 
         <button
@@ -34,7 +34,7 @@
         color="primary"
         type="submit"
         class="edit-button"
-        [disabled]="!titleEditInput.value"
+        [disabled]="!editTitleInput.value"
       >
         <mat-icon>check</mat-icon>
       </button>
