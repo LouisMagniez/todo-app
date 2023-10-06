@@ -1,0 +1,46 @@
+.search-task {
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+}
+
+.chips {
+  display: flex;
+  justify-content: center;
+}
+
+.card-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: 128px;
+  margin-right: 128px;
+}
+
+.card {
+  margin: 32px;
+}
+
+.new-card {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.task-counter {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  color: grey;
+  font-size: medium;
+}
+
+.counter {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.counter-total {
+  margin-left: 24px;
+  font-weight: 500;
+}

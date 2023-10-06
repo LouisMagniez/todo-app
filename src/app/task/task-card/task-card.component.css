@@ -23,25 +23,6 @@
   text-decoration: line-through;
 }
 
-.chips {
-  display: flex;
-  justify-content: center;
-}
-
-.search-task {
-  display: flex;
-  justify-content: center;
-  margin-top: 3em;
-}
-
-.search-input {
-  width: 256px;
-}
-
-.search {
-  display: flex;
-}
-
 .divider {
   margin: 8px;
 }
@@ -64,22 +45,25 @@
 .task {
   display: flex;
   min-height: 72px;
+  align-items: center;
+  flex-wrap: wrap;
+  word-break: break-all;
 }
 
-.task-counter {
+.title {
   display: flex;
-  justify-content: space-evenly;
-  margin: -12px 12px 8px 296px;
-  color: #6b6b6b;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 32px;
+  font-weight: 500;
+  align-items: center;
 }
 
-.counter-todo-done {
+.title-edit {
   display: flex;
-  justify-content: space-evenly;
-  margin-right: 12px;
-  width: 124px;
 }
 
-.counter-total {
-  font-weight: bold;
+.title-button {
+  display: flex;
+  margin-left: 12px;
 }

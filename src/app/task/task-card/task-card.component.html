@@ -1,0 +1,89 @@
+<div class="align-center">
+  <mat-card class="task-card">
+    <mat-card-content>
+      <mat-card-header class="title">
+        <div
+          class="title edit"
+          [hidden]="titleEdit"
+          (click)="onClickEditTitle()"
+          (mouseover)="editTitleIcon = true"
+          (mouseout)="editTitleIcon = false"
+        >
+          <div [hidden]="titleEdit">{{ CardTitle }}</div>
+
+          <button
+            class="title-button"
+            [hidden]="!editTitleIcon"
+            mat-icon-button
+            matTooltip="Edit title"
+            aria-label="Button to edit the title"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+
+        <div [hidden]="!titleEdit">
+          <app-title-edit
+            (editTitleEvent)="onEventEditTitle($event)"
+            [titleToEdit]="CardTitle"
+          ></app-title-edit>
+        </div>
+      </mat-card-header>
+      <app-task-form
+        (refreshTaskListEvent)="refreshTaskList()"
+        [formCardID]="this.CardID"
+      ></app-task-form>
+
+      <mat-list-item
+        *ngFor="
+          let task of filterTaskList(search, filterDoneStatus);
+          trackBy: trackById;
+          last as last
+        "
+      >
+        <div class="task">
+          <mat-checkbox
+            [disabled]="task.edit"
+            [(ngModel)]="task.done"
+            (ngModelChange)="onChangeDoneStatus(task)"
+          ></mat-checkbox>
+          <div [hidden]="task.edit">
+            <span
+              id="task{{ task.id }}"
+              class="task-list"
+              [ngClass]="{ 'task-done': task.done }"
+            >
+              {{ task.content }}
+            </span>
+            <button
+              mat-icon-button
+              matTooltip="Edit"
+              aria-label="Button to edit a task"
+              (click)="onClickEditTask(task)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              matTooltip="Delete"
+              aria-label="Button to delete a task"
+              (click)="onClickDelete(task); refreshTaskList()"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+
+          <div [hidden]="!task.edit">
+            <app-task-edit
+              [taskToEdit]="task"
+              [editCardID]="this.CardID"
+            ></app-task-edit>
+          </div>
+        </div>
+        <div class="divider">
+          <mat-divider *ngIf="!last"></mat-divider>
+        </div>
+      </mat-list-item>
+    </mat-card-content>
+  </mat-card>
+</div>

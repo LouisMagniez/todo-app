@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { TaskFormComponent } from "./task-form/task-form.component"
 import { RouterModule, type Routes } from "@angular/router"
-import { TaskListComponent } from "./task-list/task-list.component"
+import { TaskCardComponent } from "./task-card/task-card.component"
 import { FormsModule } from "@angular/forms"
 import { MatButtonModule } from "@angular/material/button"
 import { MatIconModule } from "@angular/material/icon"
@@ -25,11 +25,19 @@ import {
   provideAnimations,
 } from "@angular/platform-browser/animations"
 import { TaskEditComponent } from "./task-edit/task-edit.component"
+import { TaskCardListComponent } from "./task-card-list/task-card-list.component";
+import { TitleEditComponent } from './title-edit/title-edit.component'
 
-const taskRoutes: Routes = [{ path: "tasks", component: TaskListComponent }]
+const taskRoutes: Routes = [{ path: "tasks", component: TaskCardListComponent }]
 
 @NgModule({
-  declarations: [TaskFormComponent, TaskListComponent, TaskEditComponent],
+  declarations: [
+    TaskFormComponent,
+    TaskCardComponent,
+    TaskEditComponent,
+    TaskCardListComponent,
+    TitleEditComponent,
+  ],
 
   imports: [
     CommonModule,
