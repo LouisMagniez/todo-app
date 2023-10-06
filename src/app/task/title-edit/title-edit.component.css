@@ -1,3 +1,23 @@
 .edit-form {
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  margin-top: 14px;
+}
+
+.button {
+  padding-left: 8px;
+}
+
+.input {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.form-group {
+  transform: translateY(6%);
+  width: 256px;
 }
