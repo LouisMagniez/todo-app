@@ -2,31 +2,22 @@
   <mat-card class="task-card">
     <mat-card-content>
       <mat-card-header class="title">
-        <div
-          class="title edit"
-          [hidden]="titleEdit"
-          (click)="onClickEditTitle()"
-          (mouseover)="editTitleIcon = true"
-          (mouseout)="editTitleIcon = false"
-        >
-          <div [hidden]="titleEdit">{{ CardTitle }}</div>
-
-          <button
-            class="title-button"
-            [hidden]="!editTitleIcon"
-            mat-icon-button
-            matTooltip="Edit title"
-            aria-label="Button to edit the title"
+        <div>
+          <div
+            [hidden]="titleEdit"
+            (click)="onClickEditTitle()"
+            (mouseover)="editTitleIcon = true"
+            (mouseout)="editTitleIcon = false"
           >
-            <mat-icon>edit</mat-icon>
-          </button>
-        </div>
+            <div [hidden]="titleEdit">{{ CardTitle }}</div>
+          </div>
 
-        <div [hidden]="!titleEdit">
-          <app-title-edit
-            (editTitleEvent)="onEventEditTitle($event)"
-            [titleToEdit]="CardTitle"
-          ></app-title-edit>
+          <div [hidden]="!titleEdit">
+            <app-title-edit
+              (editTitleEvent)="onEventEditTitle($event)"
+              [titleToEdit]="CardTitle"
+            ></app-title-edit>
+          </div>
         </div>
       </mat-card-header>
       <app-task-form
@@ -42,30 +33,43 @@
         "
       >
         <div class="task">
-          <mat-checkbox
-            [disabled]="task.edit"
-            [(ngModel)]="task.done"
-            (ngModelChange)="onChangeDoneStatus(task)"
-          ></mat-checkbox>
-          <div [hidden]="task.edit">
-            <span
-              id="task{{ task.id }}"
-              class="task-list"
-              [ngClass]="{ 'task-done': task.done }"
-            >
-              <div *ngIf="task.description === ''">{{ task.content }}</div>
+          <div class="checkbox">
+            <mat-checkbox
+              [disabled]="task.edit"
+              [(ngModel)]="task.done"
+              (ngModelChange)="onChangeDoneStatus(task)"
+            ></mat-checkbox>
+          </div>
+          <div class="content">
+            <div [hidden]="task.edit">
+              <div
+                id="task{{ task.id }}"
+                class="task-list"
+                [ngClass]="{ 'task-done': task.done }"
+              >
+                <div *ngIf="task.description === ''">{{ task.content }}</div>
 
-              <div *ngIf="task.description !== ''">
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    {{ task.content }}
-                  </mat-expansion-panel-header>
-                  {{ task.description }}
-                </mat-expansion-panel>
+                <div *ngIf="task.description !== ''">
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      {{ task.content }}
+                    </mat-expansion-panel-header>
+                    {{ task.description }}
+                  </mat-expansion-panel>
+                </div>
               </div>
-            </span>
+            </div>
 
+            <div [hidden]="!task.edit" class="edit">
+              <app-task-edit
+                [taskToEdit]="task"
+                [editCardID]="this.CardID"
+              ></app-task-edit>
+            </div>
+          </div>
+          <div class="buttons">
             <button
+              [hidden]="task.edit"
               mat-icon-button
               matTooltip="Edit"
               aria-label="Button to edit a task"
@@ -74,6 +78,7 @@
               <mat-icon>edit</mat-icon>
             </button>
             <button
+              [hidden]="task.edit"
               mat-icon-button
               matTooltip="Delete"
               aria-label="Button to delete a task"
@@ -82,15 +87,8 @@
               <mat-icon>delete</mat-icon>
             </button>
           </div>
-
-          <div [hidden]="!task.edit">
-            <app-task-edit
-              [taskToEdit]="task"
-              [editCardID]="this.CardID"
-            ></app-task-edit>
-          </div>
         </div>
-        <div class="divider">
+        <div>
           <mat-divider *ngIf="!last"></mat-divider>
         </div>
       </mat-list-item>
