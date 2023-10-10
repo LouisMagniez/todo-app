@@ -4,7 +4,32 @@
   </div>
   <div class="content">
     <div mat-dialog-content class="desc">
-      {{ data.task.description }}
+      <div class="content-header">
+        <div class="content-header-title">
+          <h2>Description</h2>
+        </div>
+        <div class="content-header-button">
+          <button
+            mat-flat-button
+            color=""
+            matTooltip="EditDialogTask"
+            aria-label="Button to edit a task in dialog"
+            (click)="editDialogTask(data.task)"
+          >
+            Edit <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div [hidden]="editTask">{{ data.task.description }}</div>
+      <div [hidden]="!editTask">
+        <app-task-edit
+          [taskToEdit]="data.task"
+          [editCardID]="data.cardID"
+          [isInDialog]="true"
+          (submitEvent)="showDialogContent()"
+        ></app-task-edit>
+      </div>
     </div>
   </div>
   <div class="buttons">

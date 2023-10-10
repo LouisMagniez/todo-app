@@ -1,11 +1,6 @@
-<form
-  (ngSubmit)="onSubmit()"
-  #taskForm="ngForm"
-  *ngIf="taskToEdit.edit"
-  class="dense-3"
->
+<form (ngSubmit)="onSubmit()" #taskForm="ngForm" [hidden]="!taskToEdit.edit">
   <div class="edit-form">
-    <div class="edit-content">
+    <div class="edit-content" class="dense-3" [hidden]="isInDialog">
       <mat-form-field class="form-group" appearance="outline">
         <div class="edit-input">
           <input
@@ -31,8 +26,8 @@
         </button>
       </mat-form-field>
     </div>
-    <div class="edit-description">
-      <div [hidden]="taskToEdit.description === ''">
+    <div class="edit-description" [hidden]="!isInDialog">
+      <div>
         <mat-form-field class="form-group" appearance="outline">
           <div class="edit-input">
             <input
@@ -45,12 +40,12 @@
             />
           </div>
           <button
-            *ngIf="taskToEdit.content"
+            *ngIf="taskToEdit.description"
             matSuffix
             mat-icon-button
             aria-label="Clear"
             type="button"
-            (click)="taskToEdit.content = ''"
+            (click)="taskToEdit.description = ''"
           >
             <mat-icon>close</mat-icon>
           </button>

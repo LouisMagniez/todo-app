@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core"
+import { Component, EventEmitter, Input, Output } from "@angular/core"
 import { Task } from "../task"
 import { TaskService } from "../task.service"
 
@@ -12,10 +12,15 @@ export class TaskEditComponent {
 
   @Input() editCardID!: number
 
+  @Input() isInDialog: boolean = false
+
+  @Output() submitEvent = new EventEmitter()
+
   constructor(private taskService: TaskService) {}
 
   onSubmit() {
     this.taskToEdit.edit = false
+    this.submitEvent.emit()
     this.taskService.updateTask(this.taskToEdit, this.editCardID)
   }
 }

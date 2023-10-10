@@ -82,9 +82,9 @@ export class TaskCardComponent {
     return this.taskService.checkDateTime(task)
   }
 
-  openDialog(task: Task) {
+  openTaskDialog(task: Task) {
     this.dialog.open(TaskDialogComponent, {
-      data: { task: task },
+      data: { task: task, cardID: this.cardID },
     })
   }
 }

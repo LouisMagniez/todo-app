@@ -17,12 +17,23 @@
 
 .content {
   flex-grow: 1;
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-left: 32px;
+  margin-right: 32px;
 }
 
 .buttons {
   display: flex;
   justify-content: flex-end;
   margin: 16px;
+}
+
+.content-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.content-header-title {
+  flex-grow: 1;
+  margin-top: 12px;
 }
