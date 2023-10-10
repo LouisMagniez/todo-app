@@ -34,7 +34,7 @@
     mat-flat-button
     color="primary"
     class="new-card-button"
-    (click)="generateNewCard(); refreshCardList()"
+    (click)="generateNewCard()"
   >
     New Todo List
   </button>
@@ -43,8 +43,8 @@
 <div class="card-list">
   <div *ngFor="let card of cardList" class="card">
     <app-task-card
-      [CardID]="card.id"
-      [CardTitle]="card.title"
+      [cardID]="card.id"
+      [cardTitle]="card.title"
       [search]="search.value"
       [filterDoneStatus]="filterDoneStatus"
       (refreshEvent)="refreshCardList()"

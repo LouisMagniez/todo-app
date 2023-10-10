@@ -236,4 +236,60 @@ export class TaskService {
     }
     this.setCardList(cardList)
   }
+
+  checkDateTime(task: Task) {
+    if (task.dueDate && task.dueTime) {
+      if (this.checkDate(task)) {
+        return this.checkTime(task)
+      }
+    }
+    if (task.dueDate) {
+      return this.checkDate(task)
+    }
+    return this.checkTime(task)
+  }
+
+  checkDate(task: Task) {
+    let nowDate = new Date()
+    let taskDate = new Date(task.dueDate)
+    return nowDate >= taskDate
+  }
+
+  checkTime(task: Task) {
+    let nowDate = new Date()
+    let nowTime = nowDate.getHours() + ":" + nowDate.getMinutes()
+    return nowTime > task.dueTime
+  }
+
+  /** 
+
+  calcTimeLeft(task: Task) {
+    if (task.dueTime) {
+      let nowDate = new Date()
+      let nowHour = nowDate.getHours()
+      let nowMinute = nowDate.getMinutes()
+      let taskTime = +task.dueTime.slice(0, 2)
+
+      let timeLeft = this.calcDay(nowDate, task)
+    }
+    return
+  }
+
+  calcDay(nowDate: Date, task: Task) {
+    let dayLeft = +nowDate - +task.dueDate
+    console.log(dayLeft)
+    return 1
+  }
+
+  calcHour(nowTime: number, taskTime: number) {
+    let timeLeft = nowTime - taskTime
+    return timeLeft
+  }
+
+  calcMinute(nowTime: number, taskTime: number) {
+    let timeLeft = nowTime - taskTime
+    return timeLeft
+  }
+
+  */
 }

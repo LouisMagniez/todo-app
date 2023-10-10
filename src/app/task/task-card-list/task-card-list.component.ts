@@ -19,6 +19,7 @@ export class TaskCardListComponent {
 
   generateNewCard() {
     this.taskService.addCard()
+    this.refreshCardList()
   }
 
   onChangeChipCheckUndefined() {

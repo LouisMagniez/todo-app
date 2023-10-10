@@ -3,7 +3,7 @@
     <div class="form-input">
       <div class="add-task-content">
         <mat-form-field class="form-group" appearance="outline">
-          <mat-label for="title">Add a new task</mat-label>
+          <mat-label for="content">Add a new task</mat-label>
           <input
             matInput
             #contentInput
@@ -48,6 +48,40 @@
               [(ngModel)]="task.description"
               name="description"
               #description="ngModel"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="add-task-date">
+        <div [hidden]="!expandToggle">
+          <mat-form-field class="form-group" appearance="outline">
+            <mat-label for="dueDate">Due date</mat-label>
+            <input
+              matInput
+              #dateInput
+              type="date"
+              id="dueDate"
+              [(ngModel)]="task.dueDate"
+              name="dueDate"
+              #dueDate="ngModel"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="add-task-time">
+        <div [hidden]="!expandToggle">
+          <mat-form-field class="form-group" appearance="outline">
+            <mat-label for="dueTime">Due time</mat-label>
+            <input
+              matInput
+              #dueTimeInput
+              type="time"
+              id="dueTime"
+              [(ngModel)]="task.dueTime"
+              name="dueTime"
+              #dueTime="ngModel"
             />
           </mat-form-field>
         </div>
