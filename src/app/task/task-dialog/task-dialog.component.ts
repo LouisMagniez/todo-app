@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core"
+import { Component, EventEmitter, Inject, Output } from "@angular/core"
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog"
 import { Task } from "../task"
 
@@ -19,5 +19,9 @@ export class TaskDialogComponent {
 
   showDialogContent() {
     this.editTask = false
+  }
+
+  onDialogClose() {
+    this.data.isInDialog = false
   }
 }

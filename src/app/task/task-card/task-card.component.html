@@ -4,12 +4,7 @@
       <div class="card-head">
         <mat-card-header class="title">
           <div>
-            <div
-              [hidden]="titleEdit"
-              (click)="onClickEditTitle()"
-              (mouseover)="editTitleIcon = true"
-              (mouseout)="editTitleIcon = false"
-            >
+            <div [hidden]="titleEdit" (click)="onClickEditTitle()">
               <div [hidden]="titleEdit">{{ cardTitle }}</div>
             </div>
 
@@ -44,7 +39,7 @@
             ></mat-checkbox>
           </div>
           <div class="content">
-            <div [hidden]="task.edit">
+            <div [hidden]="task.edit && !isInDialog">
               <div
                 id="task{{ task.id }}"
                 class="task-list"
@@ -64,11 +59,13 @@
               </div>
             </div>
 
-            <div [hidden]="!task.edit" class="edit">
-              <app-task-edit
-                [taskToEdit]="task"
-                [editCardID]="this.cardID"
-              ></app-task-edit>
+            <div [hidden]="isInDialog">
+              <div [hidden]="!task.edit" class="edit">
+                <app-task-edit
+                  [taskToEdit]="task"
+                  [editCardID]="this.cardID"
+                ></app-task-edit>
+              </div>
             </div>
           </div>
           <div class="buttons">

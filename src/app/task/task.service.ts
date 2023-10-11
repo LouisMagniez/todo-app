@@ -261,35 +261,43 @@ export class TaskService {
     return nowTime > task.dueTime
   }
 
-  /** 
+  handleTimeLeft(task: Task) {
+    let nowDate = new Date(),
+      nowYear = nowDate.getFullYear(),
+      nowMonth = nowDate.getMonth(),
+      nowDay = nowDate.getDay(),
+      nowHour = nowDate.getHours(),
+      taskYear = task.dueDate.getFullYear(),
+      taskMonth = task.dueDate.getMonth(),
+      taskDay = task.dueDate.getDay(),
+      taskHour = +task.dueTime.slice(0, 2)
 
-  calcTimeLeft(task: Task) {
-    if (task.dueTime) {
-      let nowDate = new Date()
-      let nowHour = nowDate.getHours()
-      let nowMinute = nowDate.getMinutes()
-      let taskTime = +task.dueTime.slice(0, 2)
-
-      let timeLeft = this.calcDay(nowDate, task)
+    if (nowYear < taskYear) {
+      return
     }
+    if (nowMonth < taskMonth) {
+      return
+    }
+    if (nowDay < taskDay) {
+      this.calcTimeLeft("days", nowDay, taskDay)
+    }
+    if (nowDay == taskDay) {
+      this.calcTimeLeft("hours", nowHour, taskHour)
+    }
+    console.log("ALERTE ROUGE")
     return
   }
 
-  calcDay(nowDate: Date, task: Task) {
-    let dayLeft = +nowDate - +task.dueDate
-    console.log(dayLeft)
-    return 1
-  }
+  calcTimeLeft(toCalculate: string, nowValue: number, taskValue: number) {
+    switch (toCalculate) {
+      case "days":
+        return taskValue - nowValue
 
-  calcHour(nowTime: number, taskTime: number) {
-    let timeLeft = nowTime - taskTime
-    return timeLeft
-  }
+      case "hours":
+        return taskValue - nowValue
 
-  calcMinute(nowTime: number, taskTime: number) {
-    let timeLeft = nowTime - taskTime
-    return timeLeft
+      default:
+        return
+    }
   }
-
-  */
 }

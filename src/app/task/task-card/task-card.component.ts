@@ -29,7 +29,7 @@ export class TaskCardComponent {
 
   titleEdit: boolean = false
 
-  editTitleIcon: boolean = false
+  isInDialog: boolean = false
 
   ngOnInit() {
     this.taskList = this.taskService.getTaskList(this.cardID)
@@ -83,8 +83,9 @@ export class TaskCardComponent {
   }
 
   openTaskDialog(task: Task) {
+    this.isInDialog = true
     this.dialog.open(TaskDialogComponent, {
-      data: { task: task, cardID: this.cardID },
+      data: { task: task, cardID: this.cardID, isInDialog: this.isInDialog },
     })
   }
 }
