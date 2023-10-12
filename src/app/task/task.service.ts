@@ -261,16 +261,23 @@ export class TaskService {
     return nowTime > task.dueTime
   }
 
-  handleTimeLeft(task: Task) {
+  getTimeLeft(task: Task) {
     let nowDate = new Date(),
       nowYear = nowDate.getFullYear(),
       nowMonth = nowDate.getMonth(),
       nowDay = nowDate.getDay(),
       nowHour = nowDate.getHours(),
-      taskYear = task.dueDate.getFullYear(),
-      taskMonth = task.dueDate.getMonth(),
-      taskDay = task.dueDate.getDay(),
+      nowMinute = nowDate.getMinutes(),
+      taskYear = new Date(task.dueDate).getFullYear(),
+      taskMonth = new Date(task.dueDate).getMonth(),
+      taskDay = new Date(task.dueDate).getDay(),
+      taskHour = 0,
+      taskMinute = 0
+
+    if (task.dueTime) {
       taskHour = +task.dueTime.slice(0, 2)
+      taskMinute = +task.dueTime.slice(2, 4)
+    }
 
     if (nowYear < taskYear) {
       return
@@ -279,25 +286,44 @@ export class TaskService {
       return
     }
     if (nowDay < taskDay) {
-      this.calcTimeLeft("days", nowDay, taskDay)
+      return this.calcDaysLeft(nowDay, taskDay)
     }
-    if (nowDay == taskDay) {
-      this.calcTimeLeft("hours", nowHour, taskHour)
+    if (nowDay === taskDay) {
+      return this.calcTimeLeft(nowHour, taskHour, nowMinute, taskMinute)
     }
-    console.log("ALERTE ROUGE")
     return
   }
 
-  calcTimeLeft(toCalculate: string, nowValue: number, taskValue: number) {
-    switch (toCalculate) {
-      case "days":
-        return taskValue - nowValue
-
-      case "hours":
-        return taskValue - nowValue
-
-      default:
-        return
+  calcDaysLeft(nowDay: number, taskDay: number) {
+    if (taskDay - nowDay <= 5) {
+      return taskDay - nowDay + " days left"
+    } else {
+      return
     }
+  }
+
+  calcTimeLeft(
+    nowHour: number,
+    taskHour: number,
+    nowMinute: number,
+    taskMinute: number
+  ) {
+    let hourLeft = taskHour - nowHour,
+      minuteLeft = taskMinute - nowMinute,
+      timeLeft = ""
+
+    if (hourLeft > 0) {
+      timeLeft += hourLeft
+    }
+
+    if (taskMinute > 0) {
+      timeLeft += "" + minuteLeft
+    }
+
+    if (timeLeft !== "") {
+      timeLeft += " left"
+    }
+
+    return timeLeft
   }
 }

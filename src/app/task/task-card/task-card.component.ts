@@ -88,4 +88,8 @@ export class TaskCardComponent {
       data: { task: task, cardID: this.cardID, isInDialog: this.isInDialog },
     })
   }
+
+  getTimeLeft(task: Task) {
+    return this.taskService.getTimeLeft(task)
+  }
 }

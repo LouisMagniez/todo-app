@@ -8,7 +8,7 @@
         <div class="content-header-title">
           <h2>Description</h2>
         </div>
-        <div class="content-header-button">
+        <div class="content-header-button" [hidden]="!data.task.description">
           <button
             mat-flat-button
             color=""
@@ -17,6 +17,17 @@
             (click)="editDialogTask(data.task)"
           >
             Edit <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <div class="content-header-button" [hidden]="data.task.description">
+          <button
+            mat-flat-button
+            color=""
+            matTooltip="EditDialogTask"
+            aria-label="Button to edit a task in dialog"
+            (click)="editDialogTask(data.task)"
+          >
+            New <mat-icon>edit</mat-icon>
           </button>
         </div>
       </div>
