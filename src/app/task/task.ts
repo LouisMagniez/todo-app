@@ -2,7 +2,7 @@ export class Task {
   id!: number
   content: string
   description!: string
-  dueDate!: Date
+  dueDate!: string
   dueTime!: string
   done: boolean
   edit: boolean

@@ -44,3 +44,13 @@
   margin-left: 24px;
   font-weight: 500;
 }
+
+.card-list-header {
+  display: flex;
+}
+
+.search-chips-counter {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

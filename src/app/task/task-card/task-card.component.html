@@ -3,7 +3,7 @@
     <mat-card-content>
       <div class="card-head">
         <mat-card-header class="title">
-          <div>
+          <div class="header">
             <div [hidden]="titleEdit" (click)="onClickEditTitle()">
               <div [hidden]="titleEdit">{{ cardTitle }}</div>
             </div>
@@ -14,14 +14,15 @@
                 [titleToEdit]="cardTitle"
               ></app-title-edit>
             </div>
+            <div class="task-form">
+              <app-task-form
+                (refreshTaskListEvent)="refreshTaskList()"
+                [formCardID]="this.cardID"
+              ></app-task-form>
+            </div>
           </div>
         </mat-card-header>
       </div>
-
-      <app-task-form
-        (refreshTaskListEvent)="refreshTaskList()"
-        [formCardID]="this.cardID"
-      ></app-task-form>
 
       <mat-list-item
         *ngFor="

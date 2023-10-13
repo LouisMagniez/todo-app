@@ -26,6 +26,7 @@ export class TaskService {
   addTask(taskToAdd: Task, formCardID: number) {
     let taskList: Task[] = this.getTaskList(formCardID)
     taskToAdd.id = this.generateNewTaskId(formCardID)
+    taskToAdd = this.handleDateTime(taskToAdd)
     taskList.push(taskToAdd)
     this.setTaskList(taskList, formCardID)
   }
@@ -48,6 +49,15 @@ export class TaskService {
       }
     }
     this.setTaskList(taskList, cardID)
+  }
+
+  handleDateTime(task: Task) {
+    if (!task.dueDate && task.dueTime) {
+      task.dueDate = new Date().toLocaleString().slice(0, 10)
+      return task
+    } else {
+      return task
+    }
   }
 
   sortTaskList(listToSort: Task[]) {

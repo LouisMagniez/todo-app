@@ -79,5 +79,9 @@
 }
 
 .time-expired {
-  color: red;
+  color: #f71d02;
+}
+
+.task-form {
+  margin-top: 64px;
 }
