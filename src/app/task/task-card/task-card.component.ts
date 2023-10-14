@@ -90,6 +90,10 @@ export class TaskCardComponent {
   }
 
   getTimeLeft(task: Task) {
-    return this.taskService.getTimeLeft(task)
+    if (this.checkDateTime(task)) {
+      return this.taskService.getTimeLeft(task)
+    } else {
+      return
+    }
   }
 }

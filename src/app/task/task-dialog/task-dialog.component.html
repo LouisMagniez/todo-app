@@ -43,8 +43,9 @@
       </div>
     </div>
 
-    <div class="task-date">
-      {{ data.task.dueDate }}
+    <div [hidden]="!data.task.dueDate" class="task-due-date">
+      <h3>Due date :</h3>
+      <div class="due-date">{{ data.task.dueDate }}</div>
     </div>
   </div>
   <div class="buttons">

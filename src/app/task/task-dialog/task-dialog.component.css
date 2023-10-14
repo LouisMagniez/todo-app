@@ -37,3 +37,14 @@
   flex-grow: 1;
   margin-top: 12px;
 }
+
+.task-due-date {
+  display: flex;
+  margin-top: 24px;
+  margin-left: 24px;
+}
+
+.due-date {
+  margin-left: 16px;
+  margin-top: 6px;
+}

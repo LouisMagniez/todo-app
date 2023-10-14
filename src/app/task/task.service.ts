@@ -284,6 +284,8 @@ export class TaskService {
       taskHour = 0,
       taskMinute = 0
 
+    console.log("0")
+
     if (task.dueTime) {
       taskHour = +task.dueTime.slice(0, 2)
       taskMinute = +task.dueTime.slice(2, 4)
@@ -305,6 +307,7 @@ export class TaskService {
   }
 
   calcDaysLeft(nowDay: number, taskDay: number) {
+    console.log("1")
     if (taskDay - nowDay <= 5) {
       return taskDay - nowDay + " days left"
     } else {
@@ -333,6 +336,8 @@ export class TaskService {
     if (timeLeft !== "") {
       timeLeft += " left"
     }
+
+    console.log("2")
 
     return timeLeft
   }

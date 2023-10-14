@@ -40,34 +40,39 @@
             ></mat-checkbox>
           </div>
           <div class="content">
-            <div [hidden]="task.edit && !isInDialog">
-              <div
-                id="task{{ task.id }}"
-                class="task-list"
-                [ngClass]="{ 'task-done': task.done }"
-              >
-                <div>
-                  {{ task.content }}
-                </div>
-                <div [ngClass]="{ 'time-expired': checkDateTime(task) }">
-                  <div *ngIf="task.dueDate" class="task-date">
-                    {{ task.dueDate }}
-                  </div>
-                  <div *ngIf="task.dueTime" class="task-time">
-                    {{ task.dueTime }}
+            <div class="task-text">
+              <div [hidden]="task.edit && !isInDialog">
+                <div
+                  id="task{{ task.id }}"
+                  class="task-list"
+                  [ngClass]="{ 'task-done': task.done }"
+                >
+                  <div>
+                    {{ task.content }}
                   </div>
                 </div>
-                <div>{{ getTimeLeft(task) }}</div>
+              </div>
+
+              <div [hidden]="isInDialog">
+                <div [hidden]="!task.edit" class="edit">
+                  <app-task-edit
+                    [taskToEdit]="task"
+                    [editCardID]="this.cardID"
+                  ></app-task-edit>
+                </div>
               </div>
             </div>
 
-            <div [hidden]="isInDialog">
-              <div [hidden]="!task.edit" class="edit">
-                <app-task-edit
-                  [taskToEdit]="task"
-                  [editCardID]="this.cardID"
-                ></app-task-edit>
+            <div class="task-time">
+              <div [ngClass]="{ 'time-expired': checkDateTime(task) }">
+                <div *ngIf="checkDateTime(task)" class="task-date">
+                  {{ task.dueDate }}
+                </div>
+                <div *ngIf="task.dueTime && checkDateTime(task)">
+                  {{ task.dueTime }}
+                </div>
               </div>
+              <div>{{ getTimeLeft(task) }}</div>
             </div>
           </div>
           <div class="buttons">
