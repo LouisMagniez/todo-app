@@ -12,8 +12,9 @@
 
 .button {
   display: flex;
-  justify-content: flex-end;
-  margin-left: 8px;
+  align-items: center;
+  margin-left: 72px;
+  margin-bottom: 24px;
 }
 
 .input-field {

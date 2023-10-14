@@ -26,30 +26,67 @@
         </button>
       </mat-form-field>
     </div>
-    <div class="edit-description" class="dense-2" [hidden]="!isInDialog">
-      <div>
-        <mat-form-field class="form-group" appearance="outline">
-          <div class="edit-input">
-            <input
-              matInput
-              #taskDescEditInput
-              maxlength="200"
-              id="editDescription"
-              [(ngModel)]="taskToEdit.description"
-              name="editDescription"
-            />
-          </div>
-          <button
-            *ngIf="taskToEdit.description"
-            matSuffix
-            mat-icon-button
-            aria-label="Clear"
-            type="button"
-            (click)="taskToEdit.description = ''"
-          >
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
+
+    <div class="dialog-edit">
+      <div class="edit-description" class="dense-2" [hidden]="!isInDialog">
+        <div>
+          <mat-form-field class="form-group" appearance="outline">
+            <div class="edit-input">
+              <input
+                matInput
+                #taskDescEditInput
+                maxlength="200"
+                id="editDescription"
+                [(ngModel)]="taskToEdit.description"
+                name="editDescription"
+              />
+            </div>
+            <button
+              *ngIf="taskToEdit.description"
+              matSuffix
+              mat-icon-button
+              aria-label="Clear"
+              type="button"
+              (click)="taskToEdit.description = ''"
+            >
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="edit-date" class="dense-2" [hidden]="!isInDialog">
+        <div>
+          <mat-form-field class="form-group" appearance="outline">
+            <div class="edit-input">
+              <input
+                matInput
+                type="date"
+                #taskDateEditInput
+                id="editDate"
+                [(ngModel)]="taskToEdit.dueDate"
+                name="editDate"
+              />
+            </div>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="edit-time" class="dense-2" [hidden]="!isInDialog">
+        <div>
+          <mat-form-field class="form-group" appearance="outline">
+            <div class="edit-input">
+              <input
+                matInput
+                type="time"
+                #taskTimeEditInput
+                id="editTime"
+                [(ngModel)]="taskToEdit.dueTime"
+                name="editTime"
+              />
+            </div>
+          </mat-form-field>
+        </div>
       </div>
     </div>
 

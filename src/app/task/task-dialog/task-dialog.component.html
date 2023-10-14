@@ -43,14 +43,21 @@
       </div>
     </div>
 
-    <div [hidden]="!data.task.dueDate" class="task-due-date">
+    <div [hidden]="editTask" class="task-due-date">
       <h3>Due date :</h3>
       <div class="due-date">{{ data.task.dueDate }}</div>
+      <div class="due-time">{{ data.task.dueTime }}</div>
     </div>
   </div>
   <div class="buttons">
     <div mat-dialog-actions>
-      <button mat-button (mat-dialog-close)="onDialogClose()">Close</button>
+      <button
+        mat-button
+        (mat-dialog-close)="onDialogClose()"
+        [disabled]="data.task.edit"
+      >
+        Close
+      </button>
     </div>
   </div>
 </div>
