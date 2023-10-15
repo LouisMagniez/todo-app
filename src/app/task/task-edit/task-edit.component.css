@@ -1,6 +1,6 @@
 .edit-form {
   display: flex;
-
+  flex-wrap: wrap;
   word-wrap: break-word;
   word-break: break-all;
 }
@@ -12,8 +12,9 @@
 
 .button {
   display: flex;
-  justify-content: flex-end;
-  margin-left: 8px;
+  align-items: center;
+  margin-left: 72px;
+  margin-bottom: 24px;
 }
 
 .input-field {
@@ -25,5 +26,5 @@
 }
 
 input {
-  transform: translateY(-8%) translateX(-2%);
+  transform: translateX(-2%);
 }

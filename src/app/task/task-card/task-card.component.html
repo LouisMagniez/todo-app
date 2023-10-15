@@ -1,38 +1,28 @@
 <div class="align-center">
   <mat-card class="task-card">
     <mat-card-content>
-      <mat-card-header class="title">
-        <div
-          class="title edit"
-          [hidden]="titleEdit"
-          (click)="onClickEditTitle()"
-          (mouseover)="editTitleIcon = true"
-          (mouseout)="editTitleIcon = false"
-        >
-          <div [hidden]="titleEdit">{{ CardTitle }}</div>
+      <div class="card-head">
+        <mat-card-header class="title">
+          <div class="header">
+            <div [hidden]="titleEdit" (click)="onClickEditTitle()">
+              <div [hidden]="titleEdit">{{ cardTitle }}</div>
+            </div>
 
-          <button
-            class="title-button"
-            [hidden]="!editTitleIcon"
-            mat-icon-button
-            matTooltip="Edit title"
-            aria-label="Button to edit the title"
-          >
-            <mat-icon>edit</mat-icon>
-          </button>
-        </div>
-
-        <div [hidden]="!titleEdit">
-          <app-title-edit
-            (editTitleEvent)="onEventEditTitle($event)"
-            [titleToEdit]="CardTitle"
-          ></app-title-edit>
-        </div>
-      </mat-card-header>
-      <app-task-form
-        (refreshTaskListEvent)="refreshTaskList()"
-        [formCardID]="this.CardID"
-      ></app-task-form>
+            <div [hidden]="!titleEdit">
+              <app-title-edit
+                (editTitleEvent)="onEventEditTitle($event)"
+                [titleToEdit]="cardTitle"
+              ></app-title-edit>
+            </div>
+            <div class="task-form">
+              <app-task-form
+                (refreshTaskListEvent)="refreshTaskList()"
+                [formCardID]="this.cardID"
+              ></app-task-form>
+            </div>
+          </div>
+        </mat-card-header>
+      </div>
 
       <mat-list-item
         *ngFor="
@@ -42,20 +32,61 @@
         "
       >
         <div class="task">
-          <mat-checkbox
-            [disabled]="task.edit"
-            [(ngModel)]="task.done"
-            (ngModelChange)="onChangeDoneStatus(task)"
-          ></mat-checkbox>
-          <div [hidden]="task.edit">
-            <span
-              id="task{{ task.id }}"
-              class="task-list"
-              [ngClass]="{ 'task-done': task.done }"
-            >
-              {{ task.content }}
-            </span>
+          <div class="checkbox">
+            <mat-checkbox
+              [disabled]="task.edit"
+              [(ngModel)]="task.done"
+              (ngModelChange)="onChangeDoneStatus(task)"
+            ></mat-checkbox>
+          </div>
+          <div class="content">
+            <div class="task-text">
+              <div [hidden]="task.edit && !isInDialog">
+                <div
+                  id="task{{ task.id }}"
+                  class="task-list"
+                  [ngClass]="{ 'task-done': task.done }"
+                >
+                  <div>
+                    {{ task.content }}
+                  </div>
+                </div>
+              </div>
+
+              <div [hidden]="isInDialog">
+                <div [hidden]="!task.edit" class="edit">
+                  <app-task-edit
+                    [taskToEdit]="task"
+                    [editCardID]="this.cardID"
+                  ></app-task-edit>
+                </div>
+              </div>
+            </div>
+
+            <div class="task-time">
+              <div [ngClass]="{ 'time-expired': checkDateTime(task) }">
+                <div *ngIf="checkDateTime(task)" class="task-date">
+                  {{ task.dueDate }}
+                </div>
+                <div *ngIf="task.dueTime && checkDateTime(task)">
+                  {{ task.dueTime }}
+                </div>
+              </div>
+              <div>{{ getTimeLeft(task) }}</div>
+            </div>
+          </div>
+          <div class="buttons">
             <button
+              [hidden]="task.edit"
+              mat-icon-button
+              matTooltip="More"
+              aria-label="Open task details"
+              (click)="openTaskDialog(task)"
+            >
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+            <button
+              [hidden]="task.edit"
               mat-icon-button
               matTooltip="Edit"
               aria-label="Button to edit a task"
@@ -64,26 +95,32 @@
               <mat-icon>edit</mat-icon>
             </button>
             <button
+              [hidden]="task.edit"
               mat-icon-button
               matTooltip="Delete"
               aria-label="Button to delete a task"
-              (click)="onClickDelete(task); refreshTaskList()"
+              (click)="onClickDeleteTask(task)"
             >
               <mat-icon>delete</mat-icon>
             </button>
           </div>
-
-          <div [hidden]="!task.edit">
-            <app-task-edit
-              [taskToEdit]="task"
-              [editCardID]="this.CardID"
-            ></app-task-edit>
-          </div>
         </div>
-        <div class="divider">
+        <div>
           <mat-divider *ngIf="!last"></mat-divider>
         </div>
       </mat-list-item>
     </mat-card-content>
+    <mat-card-footer>
+      <div class="delete-card">
+        <button
+          mat-icon-button
+          matTooltip="Delete card"
+          aria-label="Button to delete a card"
+          (click)="onClickDeleteCard()"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div></mat-card-footer
+    >
   </mat-card>
 </div>

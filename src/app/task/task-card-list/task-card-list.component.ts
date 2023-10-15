@@ -1,4 +1,4 @@
-import { Component } from "@angular/core"
+import { Component, EventEmitter, Output } from "@angular/core"
 import { TaskService } from "../task.service"
 
 @Component({
@@ -19,6 +19,7 @@ export class TaskCardListComponent {
 
   generateNewCard() {
     this.taskService.addCard()
+    this.refreshCardList()
   }
 
   onChangeChipCheckUndefined() {

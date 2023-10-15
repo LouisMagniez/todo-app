@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core"
 import { Task } from "../task"
 import { TaskService } from "../task.service"
+import { MatDialog } from "@angular/material/dialog"
+import { TaskDialogComponent } from "../task-dialog/task-dialog.component"
 
 @Component({
   selector: "app-task-card",
@@ -8,11 +10,14 @@ import { TaskService } from "../task.service"
   styleUrls: ["task-card.component.css"],
 })
 export class TaskCardComponent {
-  constructor(private taskService: TaskService) {}
+  constructor(
+    private taskService: TaskService,
+    public dialog: MatDialog
+  ) {}
 
-  @Input() CardID!: number
+  @Input() cardID!: number
 
-  @Input() CardTitle: string = "No title"
+  @Input() cardTitle: string = "No title"
 
   @Input() search: string = ""
 
@@ -24,19 +29,17 @@ export class TaskCardComponent {
 
   titleEdit: boolean = false
 
-  editTitleIcon: boolean = false
+  isInDialog: boolean = false
 
   ngOnInit() {
-    this.taskList = this.taskService.getTaskList(this.CardID)
+    this.taskList = this.taskService.getTaskList(this.cardID)
   }
 
   refreshTaskList() {
-    console.log("in refresh")
-    this.taskList = this.taskService.getTaskList(this.CardID)
+    this.taskList = this.taskService.getTaskList(this.cardID)
   }
-
   onChangeDoneStatus(task: Task) {
-    this.taskService.updateTask(task, this.CardID)
+    this.taskService.updateTask(task, this.cardID)
   }
 
   filterTaskList(searchFilter: string, filterDoneStatus: string) {
@@ -55,8 +58,14 @@ export class TaskCardComponent {
     this.titleEdit = true
   }
 
-  onClickDelete(task: Task) {
-    this.taskService.deleteTask(task, this.CardID)
+  onClickDeleteTask(task: Task) {
+    this.taskService.deleteTask(task, this.cardID)
+    this.refreshTaskList()
+  }
+
+  onClickDeleteCard() {
+    this.taskService.deleteCard(this.cardID)
+    this.refreshEvent.emit()
   }
 
   trackById(_index: number, task: Task) {
@@ -65,7 +74,26 @@ export class TaskCardComponent {
 
   onEventEditTitle(editValue: string) {
     this.titleEdit = false
-    this.taskService.editTitle(editValue, this.CardID)
+    this.taskService.editTitle(editValue, this.cardID)
     this.refreshEvent.emit()
+  }
+
+  checkDateTime(task: Task) {
+    return this.taskService.checkDateTime(task)
+  }
+
+  openTaskDialog(task: Task) {
+    this.isInDialog = true
+    this.dialog.open(TaskDialogComponent, {
+      data: { task: task, cardID: this.cardID, isInDialog: this.isInDialog },
+    })
+  }
+
+  getTimeLeft(task: Task) {
+    if (this.checkDateTime(task)) {
+      return this.taskService.getTimeLeft(task)
+    } else {
+      return
+    }
   }
 }

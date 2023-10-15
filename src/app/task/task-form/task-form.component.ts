@@ -8,11 +8,13 @@ import { TaskService } from "../task.service"
   styleUrls: ["task-form.component.css"],
 })
 export class TaskFormComponent {
-  task!: Task
-
   @Input() formCardID!: number
 
   @Output() refreshTaskListEvent = new EventEmitter<null>()
+
+  task!: Task
+
+  expandToggle: boolean = false
 
   constructor(private taskService: TaskService) {}
 
@@ -28,5 +30,10 @@ export class TaskFormComponent {
 
   resetCurrentTask() {
     this.task = new Task()
+  }
+
+  expandForm() {
+    if (this.expandToggle) this.expandToggle = false
+    else this.expandToggle = true
   }
 }

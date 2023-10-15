@@ -26,6 +26,7 @@ export class TaskService {
   addTask(taskToAdd: Task, formCardID: number) {
     let taskList: Task[] = this.getTaskList(formCardID)
     taskToAdd.id = this.generateNewTaskId(formCardID)
+    taskToAdd = this.handleDateTime(taskToAdd)
     taskList.push(taskToAdd)
     this.setTaskList(taskList, formCardID)
   }
@@ -48,6 +49,15 @@ export class TaskService {
       }
     }
     this.setTaskList(taskList, cardID)
+  }
+
+  handleDateTime(task: Task) {
+    if (!task.dueDate && task.dueTime) {
+      task.dueDate = new Date().toLocaleString().slice(0, 10)
+      return task
+    } else {
+      return task
+    }
   }
 
   sortTaskList(listToSort: Task[]) {
@@ -139,8 +149,11 @@ export class TaskService {
   }
 
   initCard() {
-    if (localStorage.getItem("CardList")) return
-    else this.cardTemplate()
+    if (localStorage.getItem("CardList")) {
+      return
+    } else {
+      this.generateDefaultCard()
+    }
   }
 
   addCard() {
@@ -149,6 +162,20 @@ export class TaskService {
     newCard.id = this.generateNewCardId()
     newCard.title = this.generateCardTitle()
     cardList.push(newCard)
+    this.setCardList(cardList)
+  }
+
+  deleteCard(cardToDelete: number) {
+    let cardList: Card[] = this.getCardList()
+    for (let card of cardList) {
+      if (card.id === cardToDelete) {
+        cardList.splice(cardList.indexOf(card), 1)
+      }
+    }
+    this.setCardList(cardList)
+  }
+
+  setCardList(cardList: Card[]) {
     localStorage.setItem("CardList", JSON.stringify(cardList))
   }
 
@@ -171,11 +198,11 @@ export class TaskService {
           cardList.splice(cardList.indexOf(card), 1, currentCard)
         }
       }
-      localStorage.setItem("CardList", JSON.stringify(cardList))
+      this.setCardList(cardList)
     }
   }
 
-  cardTemplate() {
+  generateDefaultCard() {
     const template = ["Pommes", "Cassonade", "Citron", "Vanille", "Canelle"]
     let taskList: Task[] = []
     let task: Task = new Task()
@@ -194,7 +221,7 @@ export class TaskService {
     newCard.id = this.generateNewCardId()
     newCard.title = "Liste de courses"
     cardList.push(newCard)
-    localStorage.setItem("CardList", JSON.stringify(cardList))
+    this.setCardList(cardList)
   }
 
   generateCardTitle() {
@@ -217,6 +244,101 @@ export class TaskService {
         cardList.splice(cardList.indexOf(card), 1, cardToUpdate)
       }
     }
-    localStorage.setItem("CardList", JSON.stringify(cardList))
+    this.setCardList(cardList)
+  }
+
+  checkDateTime(task: Task) {
+    if (task.dueDate && task.dueTime) {
+      if (this.checkDate(task)) {
+        return this.checkTime(task)
+      }
+    }
+    if (task.dueDate) {
+      return this.checkDate(task)
+    }
+    return this.checkTime(task)
+  }
+
+  checkDate(task: Task) {
+    let nowDate = new Date()
+    let taskDate = new Date(task.dueDate)
+    return nowDate >= taskDate
+  }
+
+  checkTime(task: Task) {
+    let nowDate = new Date()
+    let nowTime = nowDate.getHours() + ":" + nowDate.getMinutes()
+    return nowTime > task.dueTime
+  }
+
+  getTimeLeft(task: Task) {
+    let nowDate = new Date(),
+      nowYear = nowDate.getFullYear(),
+      nowMonth = nowDate.getMonth(),
+      nowDay = nowDate.getDay(),
+      nowHour = nowDate.getHours(),
+      nowMinute = nowDate.getMinutes(),
+      taskYear = new Date(task.dueDate).getFullYear(),
+      taskMonth = new Date(task.dueDate).getMonth(),
+      taskDay = new Date(task.dueDate).getDay(),
+      taskHour = 0,
+      taskMinute = 0
+
+    console.log("0")
+
+    if (task.dueTime) {
+      taskHour = +task.dueTime.slice(0, 2)
+      taskMinute = +task.dueTime.slice(2, 4)
+    }
+
+    if (nowYear < taskYear) {
+      return
+    }
+    if (nowMonth < taskMonth) {
+      return
+    }
+    if (nowDay < taskDay) {
+      return this.calcDaysLeft(nowDay, taskDay)
+    }
+    if (nowDay === taskDay) {
+      return this.calcTimeLeft(nowHour, taskHour, nowMinute, taskMinute)
+    }
+    return
+  }
+
+  calcDaysLeft(nowDay: number, taskDay: number) {
+    console.log("1")
+    if (taskDay - nowDay <= 5) {
+      return taskDay - nowDay + " days left"
+    } else {
+      return
+    }
+  }
+
+  calcTimeLeft(
+    nowHour: number,
+    taskHour: number,
+    nowMinute: number,
+    taskMinute: number
+  ) {
+    let hourLeft = taskHour - nowHour,
+      minuteLeft = taskMinute - nowMinute,
+      timeLeft = ""
+
+    if (hourLeft > 0) {
+      timeLeft += hourLeft
+    }
+
+    if (taskMinute > 0) {
+      timeLeft += "" + minuteLeft
+    }
+
+    if (timeLeft !== "") {
+      timeLeft += " left"
+    }
+
+    console.log("2")
+
+    return timeLeft
   }
 }

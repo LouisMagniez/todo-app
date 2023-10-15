@@ -1,0 +1,55 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  min-height: 500px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.desc {
+  color: #242424;
+  font-size: larger;
+}
+
+.content {
+  flex-grow: 1;
+  margin-left: 32px;
+  margin-right: 32px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin: 16px;
+}
+
+.content-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.content-header-title {
+  flex-grow: 1;
+  margin-top: 12px;
+}
+
+.task-due-date {
+  display: flex;
+  margin-top: 24px;
+  margin-left: 24px;
+}
+
+.due-date {
+  margin-left: 16px;
+  margin-top: 6px;
+}
+
+.due-time {
+  margin-left: 16px;
+  margin-top: 6px;
+}

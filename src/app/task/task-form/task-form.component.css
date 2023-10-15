@@ -9,7 +9,28 @@
   margin: 10px 0px 10px 18px;
 }
 
-.new-task {
+.form-group {
   width: 314px;
   margin-bottom: 16px;
+}
+
+.expansion {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 8px;
+  margin-top: 8px;
+}
+
+.add-task-content {
+  display: flex;
+}
+
+.add-task-description {
+  display: flex;
+  justify-content: left;
+}
+
+.form-input {
+  display: flex;
+  flex-wrap: wrap;
 }

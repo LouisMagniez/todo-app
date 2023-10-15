@@ -1,31 +1,37 @@
-<div class="search-task">
-  <mat-form-field>
-    <input
-      matInput
-      placeholder="Search..."
-      (ngModelChange)="(search.value)"
-      #search
-    />
-  </mat-form-field>
-</div>
+<div class="card-list-header">
+  <div class="search-chips-counter">
+    <div class="search-task">
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Search..."
+          (ngModelChange)="(search.value)"
+          #search
+        />
+      </mat-form-field>
+    </div>
 
-<div class="chips">
-  <mat-chip-listbox
-    aria-label="chip-filter"
-    [(ngModel)]="filterDoneStatus"
-    (ngModelChange)="onChangeChipCheckUndefined()"
-  >
-    <mat-chip-option value="SEE_ALL" color="accent">See all</mat-chip-option>
-    <mat-chip-option value="TO_DO" color="accent">To do</mat-chip-option>
-    <mat-chip-option value="DONE" color="accent">Done</mat-chip-option>
-  </mat-chip-listbox>
-</div>
+    <div class="chips">
+      <mat-chip-listbox
+        aria-label="chip-filter"
+        [(ngModel)]="filterDoneStatus"
+        (ngModelChange)="onChangeChipCheckUndefined()"
+      >
+        <mat-chip-option value="SEE_ALL" color="accent"
+          >See all</mat-chip-option
+        >
+        <mat-chip-option value="TO_DO" color="accent">To do</mat-chip-option>
+        <mat-chip-option value="DONE" color="accent">Done</mat-chip-option>
+      </mat-chip-listbox>
+    </div>
 
-<div class="task-counter">
-  <div class="counter">{{ taskCounter(search.value, "TO_DO") }} Todo</div>
-  <div class="counter">{{ taskCounter(search.value, "DONE") }} Done</div>
-  <div class="counter-total">
-    Total : {{ taskCounter(search.value, "ALL") }}
+    <div class="task-counter">
+      <div class="counter">{{ taskCounter(search.value, "TO_DO") }} Todo</div>
+      <div class="counter">{{ taskCounter(search.value, "DONE") }} Done</div>
+      <div class="counter-total">
+        Total : {{ taskCounter(search.value, "ALL") }}
+      </div>
+    </div>
   </div>
 </div>
 
@@ -34,7 +40,7 @@
     mat-flat-button
     color="primary"
     class="new-card-button"
-    (click)="generateNewCard(); refreshCardList()"
+    (click)="generateNewCard()"
   >
     New Todo List
   </button>
@@ -43,8 +49,8 @@
 <div class="card-list">
   <div *ngFor="let card of cardList" class="card">
     <app-task-card
-      [CardID]="card.id"
-      [CardTitle]="card.title"
+      [cardID]="card.id"
+      [cardTitle]="card.title"
       [search]="search.value"
       [filterDoneStatus]="filterDoneStatus"
       (refreshEvent)="refreshCardList()"
