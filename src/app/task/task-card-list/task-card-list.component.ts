@@ -15,6 +15,7 @@ export class TaskCardListComponent {
 
   ngOnInit() {
     this.taskService.initCard()
+    this.refreshCardList()
   }
 
   generateNewCard() {
