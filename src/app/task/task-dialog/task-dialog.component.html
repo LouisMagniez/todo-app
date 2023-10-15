@@ -43,7 +43,11 @@
       </div>
     </div>
 
-    <div [hidden]="editTask" class="task-due-date">
+    <div
+      *ngIf="data.task.dueDate || data.task.dueTime"
+      [hidden]="editTask"
+      class="task-due-date"
+    >
       <h3>Due date :</h3>
       <div class="due-date">{{ data.task.dueDate }}</div>
       <div class="due-time">{{ data.task.dueTime }}</div>
