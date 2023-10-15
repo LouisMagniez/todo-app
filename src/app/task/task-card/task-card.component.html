@@ -68,9 +68,6 @@
                 <div *ngIf="checkDateTime(task)" class="task-date">
                   {{ task.dueDate }}
                 </div>
-                <div *ngIf="task.dueTime && checkDateTime(task)">
-                  {{ task.dueTime }}
-                </div>
               </div>
               <div>{{ getTimeLeft(task) }}</div>
             </div>
