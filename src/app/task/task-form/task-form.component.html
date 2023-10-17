@@ -9,7 +9,7 @@
             #contentInput
             maxlength="200"
             type="text"
-            id="content"
+            id="content {{ formCardID }}"
             [(ngModel)]="task.content"
             name="content"
             #content="ngModel"
@@ -17,12 +17,7 @@
           <mat-hint align="end">{{ contentInput.value.length }}/200</mat-hint>
         </mat-form-field>
         <div class="expansion">
-          <div [hidden]="expandToggle">
-            <mat-icon (click)="expandForm()"> expand_more </mat-icon>
-          </div>
-          <div [hidden]="!expandToggle">
-            <mat-icon (click)="expandForm()"> expand_less </mat-icon>
-          </div>
+          <mat-icon (click)="expandForm()"> settings </mat-icon>
         </div>
         <button
           mat-flat-button
@@ -44,7 +39,7 @@
               #descInput
               maxlength="200"
               type="text"
-              id="description"
+              id="description {{ formCardID }}"
               [(ngModel)]="task.description"
               name="description"
               #description="ngModel"
@@ -61,7 +56,7 @@
               matInput
               #dateInput
               type="date"
-              id="dueDate"
+              id="dueDate {{ formCardID }}"
               [(ngModel)]="task.dueDate"
               name="dueDate"
               #dueDate="ngModel"
@@ -78,7 +73,7 @@
               matInput
               #dueTimeInput
               type="time"
-              id="dueTime"
+              id="dueTime {{ formCardID }}"
               [(ngModel)]="task.dueTime"
               name="dueTime"
               #dueTime="ngModel"
