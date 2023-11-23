@@ -88,18 +88,31 @@
           </mat-form-field>
         </div>
       </div>
+      <div [hidden]="!isInDialog">
+        <div class="button-save">
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            [disabled]="!taskEditInput.value"
+          >
+            Save
+          </button>
+        </div>
+      </div>
     </div>
-
-    <div class="button">
-      <button
-        mat-icon-button
-        color="primary"
-        type="submit"
-        class="edit-button"
-        [disabled]="!taskEditInput.value"
-      >
-        <mat-icon>check</mat-icon>
-      </button>
+    <div [hidden]="isInDialog">
+      <div class="button">
+        <button
+          mat-icon-button
+          color="primary"
+          type="submit"
+          class="edit-button"
+          [disabled]="!taskEditInput.value"
+        >
+          <mat-icon>check</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </form>

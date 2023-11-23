@@ -13,8 +13,12 @@
 .button {
   display: flex;
   align-items: center;
-  margin-left: 72px;
+  margin-left: 8px;
   margin-bottom: 24px;
+}
+
+.button-save {
+  display: flex;
 }
 
 .input-field {
